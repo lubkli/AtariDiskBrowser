@@ -8,9 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "BinaryReader.h"
+
 @interface ViewController : NSViewController
 
-@property (assign) NSString * fileName;
+@property (atomic, readwrite, copy) NSString* fileName;
+@property (retain) NSNumber* diskSize;
+@property (assign) uint16_t sectorSize;
 
 @end
 

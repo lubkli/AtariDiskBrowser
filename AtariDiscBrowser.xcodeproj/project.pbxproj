@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57234B301FB1033400DFD5E9 /* BinaryReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57234B2F1FB1033400DFD5E9 /* BinaryReader.m */; };
 		57D5F8691FAFAEBF004D891B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D5F8681FAFAEBF004D891B /* AppDelegate.m */; };
 		57D5F86C1FAFAEBF004D891B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D5F86B1FAFAEBF004D891B /* ViewController.m */; };
 		57D5F86E1FAFAEBF004D891B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D5F86D1FAFAEBF004D891B /* Assets.xcassets */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57234B2E1FB1033400DFD5E9 /* BinaryReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinaryReader.h; sourceTree = "<group>"; };
+		57234B2F1FB1033400DFD5E9 /* BinaryReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinaryReader.m; sourceTree = "<group>"; };
 		57D5F8641FAFAEBF004D891B /* AtariDiscBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtariDiscBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D5F8671FAFAEBF004D891B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57D5F8681FAFAEBF004D891B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -59,6 +62,8 @@
 			children = (
 				57D5F8671FAFAEBF004D891B /* AppDelegate.h */,
 				57D5F8681FAFAEBF004D891B /* AppDelegate.m */,
+				57234B2E1FB1033400DFD5E9 /* BinaryReader.h */,
+				57234B2F1FB1033400DFD5E9 /* BinaryReader.m */,
 				57D5F86A1FAFAEBF004D891B /* ViewController.h */,
 				57D5F86B1FAFAEBF004D891B /* ViewController.m */,
 				57D5F86D1FAFAEBF004D891B /* Assets.xcassets */,
@@ -141,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57D5F86C1FAFAEBF004D891B /* ViewController.m in Sources */,
+				57234B301FB1033400DFD5E9 /* BinaryReader.m in Sources */,
 				57D5F8741FAFAEBF004D891B /* main.m in Sources */,
 				57D5F8691FAFAEBF004D891B /* AppDelegate.m in Sources */,
 			);
