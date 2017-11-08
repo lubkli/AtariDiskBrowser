@@ -11,7 +11,6 @@
 @interface BinaryReader (Private)
 
 -(id)initWithData:(NSData*)data littleEndian:(BOOL)littleEndian;
--(void)moveBy:(NSUInteger)count;
 
 @end
 
@@ -25,22 +24,10 @@
         data = initData;
         littleEndian = isLittleEndian;
         current = (const uint8_t *) [data bytes];
-        remain = [data length];
+        position = 0;
+        length = [data length];
     }
     return self;
-}
-
--(void)moveBy:(NSUInteger)count
-{
-    if (remain < count)
-    {
-        @throw [NSException exceptionWithName:@"Read after end"
-                                       reason:@"Can't perform this operation because of all data has been read."
-                                     userInfo:nil];
-    }
-    
-    remain -= count;
-    current += count;
 }
 
 @end
@@ -50,6 +37,25 @@
 +(id)binaryReaderWithData:(NSData*)data littleEndian:(BOOL)littleEndian
 {
     return [[BinaryReader alloc] initWithData:data littleEndian:littleEndian];
+}
+
+-(void)reset
+{
+    current -= position;
+    position = 0;
+}
+
+-(void)moveBy:(NSUInteger)count
+{
+    if (length - position < count)
+    {
+        @throw [NSException exceptionWithName:@"Read after end"
+                                       reason:@"Can't perform this operation because of all data has been read."
+                                     userInfo:nil];
+    }
+    
+    position += count;
+    current += count;
 }
 
 -(uint8_t) readByte

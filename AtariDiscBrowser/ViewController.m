@@ -16,6 +16,16 @@
 
 @implementation ViewController
 
+@synthesize fileName;
+@synthesize diskSize;
+@synthesize sectorSize;
+
+-(void)finalize
+{
+    self.diskSize = nil;
+    [super finalize];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -109,7 +119,29 @@
     NSLog(@"0 = %d", [reader readByte]);
     
     // Disk
+//    Sector 1: Boot record
+//    Sector 2-n: DOS.SYS file (on system disks)
+//    Sector n+1-359: User file space
+//    Sector 360: VTOC (Volume Table of Contents)
+//    Sector 361-368: Directory
+//    Sector 369-719: User file space
+//    Sector 720: Unused
     NSLog(@"S = %d", [reader readByte]);
+    
+    
+    
+    [reader moveBy:ss*360];
+    
+    for(int i=0; i<ss; i++)
+    {
+      NSLog(@"D = %c", [reader readByte]);
+    }
+    
+    [reader reset];
+    
+    uint16_t an2 = [reader readWord];
+    NSLog(@"NICKATARI 0x%04x",an2);
+    // Size of disk image 4
     
     //[handle closeFile];
 }
