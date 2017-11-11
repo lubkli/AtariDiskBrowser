@@ -12,16 +12,18 @@
     BOOL littleEndian;
     NSData *data;
     const uint8_t *current;
-    NSUInteger position;
+    NSUInteger offset;
     NSUInteger length;
 }
 
-+(id)binaryReaderWithData:(NSData*)data littleEndian:(BOOL)littleEndian;
++ (id)binaryReaderWithData:(NSData *)data littleEndian:(BOOL)littleEndian;
 
--(void)reset;
--(void)moveBy:(NSUInteger)count;
+- (void)reset;
+- (void)moveBy:(NSUInteger)count;
+- (NSUInteger)getCurrent;
 
--(uint8_t) readByte;
--(uint16_t) readWord;
+- (uint8_t)readByte;
+- (uint16_t)readWord;
+- (NSString *)readString:(NSUInteger)bytes;
 
 @end

@@ -10,13 +10,13 @@
 
 @interface BinaryReader (Private)
 
--(id)initWithData:(NSData*)data littleEndian:(BOOL)littleEndian;
+- (id)initWithData:(NSData *)data littleEndian:(BOOL)littleEndian;
 
 @end
 
 @implementation BinaryReader (Private)
 
--(id)initWithData:(NSData*)initData littleEndian:(BOOL)isLittleEndian
+- (id)initWithData:(NSData *)initData littleEndian:(BOOL)isLittleEndian
 {
     self = [super init];
     if (self != nil)
@@ -24,7 +24,7 @@
         data = initData;
         littleEndian = isLittleEndian;
         current = (const uint8_t *) [data bytes];
-        position = 0;
+        offset = 0;
         length = [data length];
     }
     return self;
@@ -34,38 +34,43 @@
 
 @implementation BinaryReader
 
-+(id)binaryReaderWithData:(NSData*)data littleEndian:(BOOL)littleEndian
++ (id)binaryReaderWithData:(NSData *)data littleEndian:(BOOL)littleEndian
 {
     return [[BinaryReader alloc] initWithData:data littleEndian:littleEndian];
 }
 
--(void)reset
+- (void)reset
 {
-    current -= position;
-    position = 0;
+    current -= offset;
+    offset = 0;
 }
 
--(void)moveBy:(NSUInteger)count
+- (void)moveBy:(NSUInteger)count
 {
-    if (length - position < count)
+    if (length - offset < count)
     {
         @throw [NSException exceptionWithName:@"Read after end"
                                        reason:@"Can't perform this operation because of all data has been read."
                                      userInfo:nil];
     }
     
-    position += count;
+    offset += count;
     current += count;
 }
 
--(uint8_t) readByte
+- (NSUInteger)getCurrent
+{
+    return offset;
+}
+
+- (uint8_t)readByte
 {
     const uint8_t *old = current;
     [self moveBy:1];
     return old[0];
 }
 
--(uint16_t) readWord
+- (uint16_t)readWord
 {
     const uint16_t *word = (const uint16_t *) current;
     [self moveBy:sizeof(uint16_t)];
@@ -77,6 +82,15 @@
     {
         return CFSwapInt16BigToHost(*word);
     }
+}
+
+- (NSString *)readString:(NSUInteger)bytes
+{
+    char nm[bytes+1];
+    for (int c=0; c<bytes; c++)
+        nm[c] = [self readByte];
+    nm[bytes] = '\0';    
+    return @(nm);
 }
 
 @end
