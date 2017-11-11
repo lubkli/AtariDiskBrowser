@@ -14,13 +14,14 @@
     @private
     NSUInteger dos;
     NSMutableArray *usage;
-    NSMutableArray<AtariFile*> *content;
+    //NSMutableArray<AtariFile*> *content;
 }
 
 @property (assign) NSUInteger diskSize;
 @property (assign) NSUInteger sectorSize;
 @property (assign) NSUInteger sectorsCount;
 @property (assign) NSUInteger sectorsFree;
+@property (retain) NSMutableArray<AtariFile*> *content;
 
 typedef NS_ENUM(NSInteger, ATRHeader) {
     ATRHeaderError,

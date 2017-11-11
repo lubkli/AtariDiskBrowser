@@ -9,15 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface AtariFile : NSObject {
+@private
     uint8_t flags;
     NSUInteger start;
     NSUInteger length;
+    NSString *name;
+    NSString *ext;
 }
 
 @property (assign) uint8_t flags;
 @property (assign) NSUInteger start;
 @property (assign) NSUInteger length;
-@property (retain) NSString *name;
-@property (retain) NSString *ext;
+@property (copy) NSString *name;
+@property (copy) NSString *ext;
 
 @end

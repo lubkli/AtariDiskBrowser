@@ -17,6 +17,7 @@
 @property (assign) NSUInteger sectorSize;
 @property (assign) NSUInteger sectorsCount;
 @property (assign) NSUInteger sectorsFree;
+@property (retain) NSMutableArray *list;
 
 @end
 

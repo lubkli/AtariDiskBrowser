@@ -38,7 +38,9 @@
         NSArray *urls = [openDlg URLs];
         
         self.fileName = [urls objectAtIndex:0];
-     
+
+        //[self.view.window setTitle:[self.fileName lastPathComponent]];
+        
         // Create ATR file reader
         ATRFile *image = [[ATRFile alloc] init];
         [image readFromFile:self.fileName];
@@ -48,6 +50,21 @@
         self.sectorSize = image.sectorSize;
         self.sectorsFree = image.sectorsFree;
         self.sectorsCount = image.sectorsCount;
+        
+        //self.list = image.content;
+        self.list = [[NSMutableArray alloc] init];
+        AtariFile *af = [[AtariFile alloc]init];
+        af.name=@"fff";
+        @try
+        {
+            //[self.list addObject:af];
+            self.list = image.content;
+        }
+        @catch(NSException *exc)
+        {
+            NSLog(@"%@",exc);
+        }
+        
         
         // Retrieve content
         //NSArray<AtariFile*> files = file.content;
@@ -61,6 +78,7 @@
 @synthesize fileName;
 @synthesize diskSize;
 @synthesize sectorSize;
+@synthesize list;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
