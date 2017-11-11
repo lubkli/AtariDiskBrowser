@@ -58,7 +58,7 @@
     current += count;
 }
 
-- (NSUInteger)getCurrent
+- (NSUInteger)getOffset
 {
     return offset;
 }

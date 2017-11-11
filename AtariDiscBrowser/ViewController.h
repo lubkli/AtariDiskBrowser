@@ -8,13 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "BinaryReader.h"
+#import "ATRFile.h"
 
 @interface ViewController : NSViewController
 
-@property (atomic, readwrite, copy) NSString* fileName;
-@property (retain) NSNumber* diskSize;
-@property (assign) uint16_t sectorSize;
+@property (copy) NSString *fileName;
+@property (assign) NSUInteger diskSize;
+@property (assign) NSUInteger sectorSize;
+@property (assign) NSUInteger sectorsCount;
+@property (assign) NSUInteger sectorsFree;
 
 @end
 

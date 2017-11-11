@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		57234B301FB1033400DFD5E9 /* BinaryReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57234B2F1FB1033400DFD5E9 /* BinaryReader.m */; };
+		5729DBB01FB3BB500068ABCC /* ATRFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5729DBAF1FB3BB500068ABCC /* ATRFile.m */; };
+		5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */; };
+		5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BAC01FB4C85C00CEDB10 /* AtariFile.m */; };
 		57D5F8691FAFAEBF004D891B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D5F8681FAFAEBF004D891B /* AppDelegate.m */; };
 		57D5F86C1FAFAEBF004D891B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D5F86B1FAFAEBF004D891B /* ViewController.m */; };
 		57D5F86E1FAFAEBF004D891B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D5F86D1FAFAEBF004D891B /* Assets.xcassets */; };
@@ -18,6 +21,12 @@
 /* Begin PBXFileReference section */
 		57234B2E1FB1033400DFD5E9 /* BinaryReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BinaryReader.h; sourceTree = "<group>"; };
 		57234B2F1FB1033400DFD5E9 /* BinaryReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinaryReader.m; sourceTree = "<group>"; };
+		5729DBAE1FB3BB500068ABCC /* ATRFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRFile.h; sourceTree = "<group>"; };
+		5729DBAF1FB3BB500068ABCC /* ATRFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATRFile.m; sourceTree = "<group>"; };
+		5757BABC1FB4AE4B00CEDB10 /* NSStringExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSStringExtension.h; sourceTree = "<group>"; };
+		5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringExtension.m; sourceTree = "<group>"; };
+		5757BABF1FB4C85C00CEDB10 /* AtariFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtariFile.h; sourceTree = "<group>"; };
+		5757BAC01FB4C85C00CEDB10 /* AtariFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtariFile.m; sourceTree = "<group>"; };
 		57D5F8641FAFAEBF004D891B /* AtariDiscBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtariDiscBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D5F8671FAFAEBF004D891B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57D5F8681FAFAEBF004D891B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,15 +71,21 @@
 			children = (
 				57D5F8671FAFAEBF004D891B /* AppDelegate.h */,
 				57D5F8681FAFAEBF004D891B /* AppDelegate.m */,
+				57D5F86D1FAFAEBF004D891B /* Assets.xcassets */,
+				57D5F8751FAFAEBF004D891B /* AtariDiscBrowser.entitlements */,
+				5757BABF1FB4C85C00CEDB10 /* AtariFile.h */,
+				5757BAC01FB4C85C00CEDB10 /* AtariFile.m */,
+				5729DBAE1FB3BB500068ABCC /* ATRFile.h */,
+				5729DBAF1FB3BB500068ABCC /* ATRFile.m */,
 				57234B2E1FB1033400DFD5E9 /* BinaryReader.h */,
 				57234B2F1FB1033400DFD5E9 /* BinaryReader.m */,
+				57D5F8721FAFAEBF004D891B /* Info.plist */,
+				57D5F86F1FAFAEBF004D891B /* Main.storyboard */,
+				57D5F8731FAFAEBF004D891B /* main.m */,
+				5757BABC1FB4AE4B00CEDB10 /* NSStringExtension.h */,
+				5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */,
 				57D5F86A1FAFAEBF004D891B /* ViewController.h */,
 				57D5F86B1FAFAEBF004D891B /* ViewController.m */,
-				57D5F86D1FAFAEBF004D891B /* Assets.xcassets */,
-				57D5F86F1FAFAEBF004D891B /* Main.storyboard */,
-				57D5F8721FAFAEBF004D891B /* Info.plist */,
-				57D5F8731FAFAEBF004D891B /* main.m */,
-				57D5F8751FAFAEBF004D891B /* AtariDiscBrowser.entitlements */,
 			);
 			path = AtariDiscBrowser;
 			sourceTree = "<group>";
@@ -149,6 +164,9 @@
 				57234B301FB1033400DFD5E9 /* BinaryReader.m in Sources */,
 				57D5F8741FAFAEBF004D891B /* main.m in Sources */,
 				57D5F8691FAFAEBF004D891B /* AppDelegate.m in Sources */,
+				5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */,
+				5729DBB01FB3BB500068ABCC /* ATRFile.m in Sources */,
+				5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

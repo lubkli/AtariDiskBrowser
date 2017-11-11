@@ -20,7 +20,7 @@
 
 - (void)reset;
 - (void)moveBy:(NSUInteger)count;
-- (NSUInteger)getCurrent;
+- (NSUInteger)getOffset;
 
 - (uint8_t)readByte;
 - (uint16_t)readWord;

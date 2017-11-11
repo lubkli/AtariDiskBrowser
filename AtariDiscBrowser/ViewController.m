@@ -8,39 +8,15 @@
 
 #import "ViewController.h"
 
-@interface ViewController()
+@interface ViewController (Private)
 
 - (void)openFile;
 
 @end
 
-@implementation ViewController
+@implementation ViewController (Private)
 
-@synthesize fileName;
-@synthesize diskSize;
-@synthesize sectorSize;
-
--(void)finalize
-{
-    self.diskSize = nil;
-    [super finalize];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    // Do any additional setup after loading the view.
-    self.fileName = @"";
-}
-
-
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
-}
-
-- (IBAction)openClick:(NSButton *)sender {
+- (void)openFile {
     // Create the File Open Dialog class.
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     
@@ -59,91 +35,49 @@
     {
         // Get an array containing the full filenames of all
         // files and directories selected.
-        NSArray* urls = [openDlg URLs];
-        
-        // Loop through all the files and process them.
-        /*for(int i = 0; i < [urls count]; i++ )
-        {
-            NSString* url = [urls objectAtIndex:i];
-            NSLog(@"Url: %@", url);
-        }*/
+        NSArray *urls = [openDlg URLs];
         
         self.fileName = [urls objectAtIndex:0];
+     
+        // Create ATR file reader
+        ATRFile *image = [[ATRFile alloc] init];
+        [image readFromFile:self.fileName];
         
-        [self openFile];
+        // Retrieve header info
+        self.diskSize = image.diskSize;
+        self.sectorSize = image.sectorSize;
+        self.sectorsFree = image.sectorsFree;
+        self.sectorsCount = image.sectorsCount;
+        
+        // Retrieve content
+        //NSArray<AtariFile*> files = file.content;
     }
 }
 
-- (void)openFile {
-    
-    NSLog(@"Opening file %@", self.fileName);
+@end
 
-    //NSFileHandle *handle = [NSFileHandle fileHandleForReadingAtPath: self.fileName];
-    //NSData *fileData = [handle readDataOfLength: 3];
+@implementation ViewController
+
+@synthesize fileName;
+@synthesize diskSize;
+@synthesize sectorSize;
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    // Do any additional setup after loading the view.
     
-    NSData *fileData = [NSData dataWithContentsOfFile:self.fileName];
-    //Byte bytes[16];
-    //[fileData getBytes:bytes length:sizeof(Byte) * 16];
-    //96 02 -> 02 96 ; $0296 (sum of 'NICKATARI')
-    //80 16 -> 16 80 ; size of this disk image, in paragraphs (size/$10)
-    //WO RD -> sector size. ($80 or $100) bytes/sector
-    //BYTE -> high part of size, in paragraphs (added by REV 3.00)
-    
-    BinaryReader *reader = [BinaryReader binaryReaderWithData:fileData littleEndian:TRUE];
-    // Header
-    // Identification 2
-    uint16_t an = [reader readWord];
-    NSLog(@"NICKATARI 0x%04x",an);
-    // Size of disk image 4
-    uint16_t ds = [reader readWord];
-    self.diskSize = [NSNumber numberWithInt: 0x10 * ds];
-    NSLog(@"Disk size %@ bytes", self.diskSize);
-    // Sector size 6
-    uint16_t ss = [reader readWord];
-    self.sectorSize = ss;
-    NSLog(@"Sector size %d bytes/sector",ss);
-    // High part of size 8
-    uint16_t hs = [reader readWord];
-    NSLog(@"High size %d",hs);
-    // Disk flags 9
-    uint16_t df = [reader readByte];
-    NSLog(@"Disk flags %d",df);
-    // 1st bad sector 11
-    uint16_t bs = [reader readWord];
-    NSLog(@"1st bad sector %d",bs);
-    // 5 x Zero Byte 16
-    NSLog(@"0 = %d", [reader readByte]);
-    NSLog(@"0 = %d", [reader readByte]);
-    NSLog(@"0 = %d", [reader readByte]);
-    NSLog(@"0 = %d", [reader readByte]);
-    NSLog(@"0 = %d", [reader readByte]);
-    
-    // Disk
-//    Sector 1: Boot record
-//    Sector 2-n: DOS.SYS file (on system disks)
-//    Sector n+1-359: User file space
-//    Sector 360: VTOC (Volume Table of Contents)
-//    Sector 361-368: Directory
-//    Sector 369-719: User file space
-//    Sector 720: Unused
-    NSLog(@"S = %d", [reader readByte]);
-    
-    
-    
-    [reader moveBy:ss*360];
-    
-    for(int i=0; i<ss; i++)
-    {
-      NSLog(@"D = %c", [reader readByte]);
-    }
-    
-    [reader reset];
-    
-    uint16_t an2 = [reader readWord];
-    NSLog(@"NICKATARI 0x%04x",an2);
-    // Size of disk image 4
-    
-    //[handle closeFile];
+    [self openFile];
+}
+
+- (void)setRepresentedObject:(id)representedObject {
+    [super setRepresentedObject:representedObject];
+
+    // Update the view, if already loaded.
+}
+
+- (IBAction)openClick:(NSButton *)sender {
+    [self openFile];
 }
 
 @end
