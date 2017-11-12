@@ -118,6 +118,15 @@
         // skip to VTOC ( begining of sector 360 = 0x168 )
         [reader moveBy:self.sectorSize*359];
         
+//        [reader moveBy:self.sectorSize*4];
+//        for (int i=0; i<self.sectorSize*4; i++)
+//        {
+//            uint8_t b = [reader readByte];
+//            NSLog(@"%d %c", b, b);
+//        }
+//
+//        return 1;
+        
         dos = [reader readByte];
         self.sectorsCount = [reader readWord];
         self.sectorsFree = [reader readWord];

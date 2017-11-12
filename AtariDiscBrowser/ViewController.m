@@ -50,6 +50,10 @@
         self.sectorSize = image.sectorSize;
         self.sectorsFree = image.sectorsFree;
         self.sectorsCount = image.sectorsCount;
+        self.sectorsCounted = [NSString stringWithFormat:@"%lu sectors", image.diskSize / image.sectorSize];
+        self.diskFreeCounted =[NSString stringWithFormat:@"Free %lu kB/%lu kB", (image.sectorsFree * image.sectorSize)/1024, image.diskSize/1024];
+        self.percentFree = 10 - (10 * image.sectorsFree * image.sectorSize) / image.diskSize;
+        self.dosCounted = @"DOS 2.0";
         
         //self.list = image.content;
         self.list = [[NSMutableArray alloc] init];
@@ -78,6 +82,10 @@
 @synthesize fileName;
 @synthesize diskSize;
 @synthesize sectorSize;
+@synthesize sectorsCounted;
+@synthesize diskFreeCounted;
+@synthesize dosCounted;
+@synthesize percentFree;
 @synthesize list;
 
 - (void)viewDidLoad {
