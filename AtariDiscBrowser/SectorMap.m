@@ -44,8 +44,8 @@
 - (void)setSectorsCount:(NSUInteger)sectorsCount
 {
     _sectorsCount = sectorsCount;
-    colors = [NSMutableArray<NSColor*> arrayWithCapacity:_sectorsCount];
-    for (int i=0; i<_sectorsCount; i++)
+    colors = [NSMutableArray<NSColor*> arrayWithCapacity:_sectorsCount+1];
+    for (int i=0; i<_sectorsCount+1; i++)
     {
         if ((i >= 0) && (i < 3 ))
             colors[i] = [NSColor orangeColor];

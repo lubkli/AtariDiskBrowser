@@ -16,12 +16,10 @@
 @property (assign) NSUInteger length;
 @property (assign) uint8_t flags;
 
+@property (assign) BOOL OpenForOutput;
+@property (assign) BOOL CreatedInDos2;
+@property (assign) BOOL Locked;
+@property (assign) BOOL EntryInUse;
+@property (assign) BOOL Deleted;
 
 @end
-
-//if ((flags & 0x1) > 0) entry.OpenForOutput = true;
-//if ((flags & 0x2) > 0) entry.CreatedInDos2 = true;
-//if ((flags & 0x20) > 0) entry.Locked = true;
-//if ((flags & 0x40) > 0) entry.EntryInUse = true;
-//if ((flags & 0x80) > 0) entry.Deleted = true;
-

@@ -114,6 +114,13 @@
             file.start = [reader readWord];
             file.name = [reader readString:8];
             file.ext = [reader readString:3];
+            
+            if ((file.flags & 0x1) > 0) file.OpenForOutput = YES;
+            if ((file.flags & 0x2) > 0) file.CreatedInDos2 = YES;
+            if ((file.flags & 0x20) > 0) file.Locked = YES;
+            if ((file.flags & 0x40) > 0) file.EntryInUse = YES;
+            if ((file.flags & 0x80) > 0) file.Deleted = YES;
+            
             if (file.name.length != 0)
             {
                 [self.content addObject:file];
