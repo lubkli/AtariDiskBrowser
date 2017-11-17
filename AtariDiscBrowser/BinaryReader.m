@@ -63,6 +63,11 @@
     return offset;
 }
 
+- (NSUInteger)getLength
+{
+    return length;
+}
+
 - (uint8_t)readByte
 {
     const uint8_t *old = current;

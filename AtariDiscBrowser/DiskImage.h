@@ -1,8 +1,8 @@
 //
-//  ATRFile.h
+//  DiskImage.h
 //  AtariDiscBrowser
 //
-//  Created by Lubomír Klimeš on 08/11/2017.
+//  Created by Lubomír Klimeš on 17/11/2017.
 //  Copyright © 2017 Lubomír Klimeš. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "AtariFile.h"
 #import "BinaryReader.h"
 
-@interface ATRFile : NSObject
+@interface DiskImage : NSObject
 
 @property (assign) NSUInteger diskSize;
 @property (assign) NSUInteger sectorSize;
@@ -21,6 +21,11 @@
 @property (nonatomic) NSData *usage;
 
 @property (retain) NSMutableArray<AtariFile*> *content;
+
+- (NSInteger)readHeader:(BinaryReader *)reader;
+- (NSInteger)skipHeader:(BinaryReader *)reader;
+- (NSInteger)readVTOC:(BinaryReader *)reader;
+- (NSInteger)readDirectories:(BinaryReader *)reader;
 
 - (NSInteger)readFromFile:(NSString *)fileName;
 

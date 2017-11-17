@@ -21,6 +21,7 @@
 - (void)reset;
 - (void)moveBy:(NSUInteger)count;
 - (NSUInteger)getOffset;
+- (NSUInteger)getLength;
 
 - (uint8_t)readByte;
 - (uint16_t)readWord;

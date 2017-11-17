@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "ATRImage.h"
+#import "XFDImage.h"
 
 @interface ViewController (Private)
 
@@ -17,6 +19,9 @@
 @implementation ViewController (Private)
 
 - (void)openFile {
+    // Allowed file types
+    NSArray* fileTypes = [NSArray arrayWithObjects:@"ATR", @"XFD", nil];
+    
     // Create the File Open Dialog class.
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     
@@ -28,6 +33,8 @@
     
     // Can't select a directory
     [openDlg setCanChooseDirectories:NO];
+    
+    [openDlg setAllowedFileTypes:fileTypes];
     
     // Display the dialog. If the OK button was pressed,
     // process the files./Users/lubomirklimes/Downloads/adir_src/adsk_atr.cpp
@@ -41,8 +48,23 @@
 
         //[self.view.window setTitle:[self.fileName lastPathComponent]];
       
-        // Create ATR file reader
-        ATRFile *image = [[ATRFile alloc] init];
+        NSString *ext = [[self.fileName pathExtension] uppercaseString];
+        
+        DiskImage *image;
+        if ([ext isEqualToString:@"ATR"])
+        {
+            image = [[ATRImage alloc] init];
+        }
+        else if ([ext isEqualToString:@"XFD"])
+        {
+            image = [[XFDImage alloc] init];
+        }
+        else
+        {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Alert" defaultButton:@"Ok" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Alert pop up displayed"];
+            [alert runModal];
+        }
+        
         [image readFromFile:self.fileName];
         
         // Prepare header info for bindings

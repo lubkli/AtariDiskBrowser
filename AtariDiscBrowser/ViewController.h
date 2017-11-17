@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "ATRFile.h"
 #import "SectorMap.h"
 
 @interface ViewController : NSViewController {

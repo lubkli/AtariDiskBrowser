@@ -1,55 +1,40 @@
 //
-//  ATRFile.m
+//  DiskImage.m
 //  AtariDiscBrowser
 //
-//  Created by Lubomír Klimeš on 08/11/2017.
+//  Created by Lubomír Klimeš on 17/11/2017.
 //  Copyright © 2017 Lubomír Klimeš. All rights reserved.
 //
 
-#import "ATRFile.h"
-#import "NSStringExtension.h"
+#import "DiskImage.h"
 
-@interface ATRFile (Private)
+@implementation DiskImage
 
-- (NSInteger)readHeader:(BinaryReader *)reader;
-- (NSInteger)readVTOC:(BinaryReader *)reader;
-- (NSInteger)readDirectories:(BinaryReader *)reader;
+@synthesize diskSize;
+@synthesize sectorSize;
 
-@end
+@synthesize sectorsCount;
+@synthesize sectorsFree;
+@synthesize usage;
 
-@implementation ATRFile (Private)
+@synthesize content;
+
+- (id)init{
+    self = [super init];
+    if (self) {
+        self.content = [[NSMutableArray<AtariFile*> alloc] init];
+    }
+    return self;
+}
 
 - (NSInteger)readHeader:(BinaryReader *)reader
 {
-    NSInteger result;
-    @try
-    {
-        [reader reset];
-        
-        uint16_t sign = [reader readWord];
-        NSLog(@"NICKATARI 0x%04x", sign);
-        
-        self.diskSize = 0x10 * [reader readWord];
-        self.sectorSize = [reader readWord];
-        
-        uint16_t highSize = [reader readWord];
-        NSLog(@"highSize 0x%04x", highSize);
-        
-        uint8_t diskFlags = [reader readByte];
-        NSLog(@"diskFlags 0x%04x", diskFlags);
-        
-        uint16_t badSect = [reader readWord];
-        NSLog(@"badSect 0x%04x", badSect);
-        
-        for (int i=0; i<5; i++)
-            NSLog(@"Z %d", [reader readByte]);
-    }
-    @catch(NSException *exc)
-    {
-        NSLog(@"Exception: %@", exc);
-        result = [reader getOffset];
-    }
-    return result;
+    return 0;
+}
+
+- (NSInteger)skipHeader:(BinaryReader *)reader
+{
+    return 0;
 }
 
 //    Sector 360 is the VTOC. It has this structure:
@@ -69,7 +54,7 @@
         [reader reset];
         
         // skip header
-        [reader moveBy:16];
+        [self skipHeader:reader];
         
         // skip to VTOC ( begining of sector 360 = 0x168 )
         [reader moveBy:self.sectorSize*359];
@@ -111,7 +96,7 @@
         [reader reset];
         
         // skip header
-        [reader moveBy:16];
+        [self skipHeader:reader];
         
         // skip VTOC
         [reader moveBy:self.sectorSize*360];
@@ -142,26 +127,6 @@
     return result;
 }
 
-@end
-
-@implementation ATRFile
-
-@synthesize diskSize;
-@synthesize sectorSize;
-
-@synthesize sectorsCount;
-@synthesize sectorsFree;
-@synthesize usage;
-
-@synthesize content;
-
-- (id)init{
-    self = [super init];
-    if (self) {
-        self.content = [[NSMutableArray<AtariFile*> alloc] init];
-    }
-    return self;
-}
 
 // FROM http://pages.suddenlink.net/wa5bdu/readme.txt
 //STRUCTURE OF AN SIO2PC ATARI DISK IMAGE:
