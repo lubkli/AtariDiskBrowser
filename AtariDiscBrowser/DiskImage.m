@@ -60,7 +60,9 @@
         [reader moveBy:self.sectorSize*359];
         
         int8_t dosSign = [reader readByte];
-        if (dosSign == 2)
+        if (dosSign == 1)
+            self.dos = @"DOS 1";
+        else if (dosSign == 2)
             self.dos = @"DOS 2";
         else
             self.dos = @"DOS ?";
