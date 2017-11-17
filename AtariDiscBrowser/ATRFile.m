@@ -21,79 +21,35 @@
 
 - (NSInteger)readHeader:(BinaryReader *)reader
 {
-    BOOL eof = NO;
-    NSInteger errorNo = -1;
-    ATRHeader state = ATRHeaderDiskMark;
-    uint8_t i8;
-    uint16_t i16;
-    
-    [reader reset];
-    
-    while(!eof)
+    NSInteger result;
+    @try
     {
-        switch (state) {
-            case ATRHeaderDiskMark:
-                i16 = [reader readWord];
-                NSLog(@"NICKATARI 0x%04x",i16);
-                if (i16 == 0x0296)
-                    state = ATRHeaderDiskSize;
-                else
-                    state = ATRHeaderError;
-                break;
-                
-            case ATRHeaderDiskSize:
-                i16 = [reader readWord];
-                self.diskSize = 0x10 * i16;
-                state = ATRHeaderSectorSize;
-                break;
-                
-            case ATRHeaderSectorSize:
-                i16 = [reader readWord];
-                self.sectorSize = i16;
-                state = ATRHeaderHighSize;
-                break;
-                
-            case ATRHeaderHighSize:
-                i16 = [reader readWord];
-                //TODO property
-                state = ATRHeaderDiskFlags;
-                break;
-                
-            case ATRHeaderDiskFlags:
-                i8 = [reader readByte];
-                //TODO property
-                state = ATRHeaderBadSector;
-                break;
-                
-            case ATRHeaderBadSector:
-                i16 = [reader readWord];
-                //TODO property
-                state = ATRHeaderZero;
-                break;
-                
-            case ATRHeaderZero:
-                for (int i=0; i<5; i++)
-                    [reader readByte];
-                state = ATRHeaderDiskData;
-                break;
-                
-            case ATRHeaderDiskData:
-                eof = YES;
-                errorNo = 0;
-                break;
-                
-            case ATRHeaderError:
-                eof = YES;
-                errorNo = [reader getOffset];
-                break;
-                
-            default:
-                eof = YES;
-                errorNo = [reader getOffset];
-                break;
-        }
+        [reader reset];
+        
+        uint16_t sign = [reader readWord];
+        NSLog(@"NICKATARI 0x%04x", sign);
+        
+        self.diskSize = 0x10 * [reader readWord];
+        self.sectorSize = [reader readWord];
+        
+        uint16_t highSize = [reader readWord];
+        NSLog(@"highSize 0x%04x", highSize);
+        
+        uint8_t diskFlags = [reader readByte];
+        NSLog(@"diskFlags 0x%04x", diskFlags);
+        
+        uint16_t badSect = [reader readWord];
+        NSLog(@"badSect 0x%04x", badSect);
+        
+        for (int i=0; i<5; i++)
+            NSLog(@"Z %d", [reader readByte]);
     }
-    return errorNo;
+    @catch(NSException *exc)
+    {
+        NSLog(@"Exception: %@", exc);
+        result = [reader getOffset];
+    }
+    return result;
 }
 
 //    Sector 360 is the VTOC. It has this structure:
@@ -118,27 +74,15 @@
         // skip to VTOC ( begining of sector 360 = 0x168 )
         [reader moveBy:self.sectorSize*359];
         
-//        [reader moveBy:self.sectorSize*4];
-//        for (int i=0; i<self.sectorSize*4; i++)
-//        {
-//            uint8_t b = [reader readByte];
-//            NSLog(@"%d %c", b, b);
-//        }
-//
-//        return 1;
-        
-        dos = [reader readByte];
+        int8_t dosSign = [reader readByte];
+        if (dosSign == 2)
+            self.dos = @"DOS 2";
+        else
+            self.dos = @"DOS ?";
         self.sectorsCount = [reader readWord];
         self.sectorsFree = [reader readWord];
+        self.usage = [reader readData:89];
         
-        usage = [[NSMutableArray alloc] init];
-        for (int i=0; i<89; i++)
-        {
-            uint8_t i8 = [reader readByte];
-            [usage addObject:[NSNumber numberWithInt:i8]];
-            //NSLog(@"%@", [NSString binaryStringRepresentationOfInt:i8 numberOfDigits:8 chunkLength:9]);
-        }
-    
         result = 0;
     }
     @catch(NSException *exc)
@@ -204,8 +148,11 @@
 
 @synthesize diskSize;
 @synthesize sectorSize;
+
 @synthesize sectorsCount;
 @synthesize sectorsFree;
+@synthesize usage;
+
 @synthesize content;
 
 - (id)init{

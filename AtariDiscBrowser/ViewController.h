@@ -9,8 +9,12 @@
 #import <Cocoa/Cocoa.h>
 
 #import "ATRFile.h"
+#import "SectorMap.h"
 
-@interface ViewController : NSViewController
+@interface ViewController : NSViewController {
+    IBOutlet NSTableView *table;
+    IBOutlet SectorMap *map;
+}
 
 @property (copy) NSString *fileName;
 @property (assign) NSUInteger diskSize;

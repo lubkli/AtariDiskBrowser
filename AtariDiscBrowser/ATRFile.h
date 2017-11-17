@@ -10,30 +10,17 @@
 #import "AtariFile.h"
 #import "BinaryReader.h"
 
-@interface ATRFile : NSObject {
-    @private
-    NSUInteger dos;
-    NSMutableArray *usage;
-    //NSMutableArray<AtariFile*> *content;
-}
+@interface ATRFile : NSObject
 
 @property (assign) NSUInteger diskSize;
 @property (assign) NSUInteger sectorSize;
+
+@property (copy) NSString *dos;
 @property (assign) NSUInteger sectorsCount;
 @property (assign) NSUInteger sectorsFree;
-@property (retain) NSMutableArray<AtariFile*> *content;
+@property (nonatomic) NSData *usage;
 
-typedef NS_ENUM(NSInteger, ATRHeader) {
-    ATRHeaderError,
-    ATRHeaderDiskMark,
-    ATRHeaderDiskSize,
-    ATRHeaderSectorSize,
-    ATRHeaderHighSize,
-    ATRHeaderDiskFlags,
-    ATRHeaderBadSector,
-    ATRHeaderZero,
-    ATRHeaderDiskData
-};
+@property (retain) NSMutableArray<AtariFile*> *content;
 
 - (NSInteger)readFromFile:(NSString *)fileName;
 

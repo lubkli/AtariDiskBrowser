@@ -10,10 +10,10 @@
 
 @implementation AtariFile
 
-@synthesize flags;
 @synthesize start;
-@synthesize length;
 @synthesize name;
 @synthesize ext;
+@synthesize length;
+@synthesize flags;
 
 @end

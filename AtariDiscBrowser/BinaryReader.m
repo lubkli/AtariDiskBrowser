@@ -93,4 +93,13 @@
     return @(nm);
 }
 
+- (NSData *)readData:(NSUInteger)bytes
+{
+    char nm[bytes+1];
+    for (int c=0; c<bytes; c++)
+        nm[c] = [self readByte];
+    nm[bytes] = '\0';
+    return [NSData dataWithBytes:nm length:bytes+1];
+}
+
 @end

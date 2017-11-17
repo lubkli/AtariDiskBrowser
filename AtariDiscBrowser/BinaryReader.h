@@ -25,5 +25,6 @@
 - (uint8_t)readByte;
 - (uint16_t)readWord;
 - (NSString *)readString:(NSUInteger)bytes;
+- (NSData *)readData:(NSUInteger)bytes;
 
 @end

@@ -8,19 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AtariFile : NSObject {
-@private
-    uint8_t flags;
-    NSUInteger start;
-    NSUInteger length;
-    NSString *name;
-    NSString *ext;
-}
+@interface AtariFile : NSObject
 
-@property (assign) uint8_t flags;
 @property (assign) NSUInteger start;
-@property (assign) NSUInteger length;
 @property (copy) NSString *name;
 @property (copy) NSString *ext;
+@property (assign) NSUInteger length;
+@property (assign) uint8_t flags;
+
 
 @end
+
+//if ((flags & 0x1) > 0) entry.OpenForOutput = true;
+//if ((flags & 0x2) > 0) entry.CreatedInDos2 = true;
+//if ((flags & 0x20) > 0) entry.Locked = true;
+//if ((flags & 0x40) > 0) entry.EntryInUse = true;
+//if ((flags & 0x80) > 0) entry.Deleted = true;
+

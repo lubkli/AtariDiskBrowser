@@ -40,12 +40,12 @@
         self.fileName = [urls objectAtIndex:0];
 
         //[self.view.window setTitle:[self.fileName lastPathComponent]];
-        
+      
         // Create ATR file reader
         ATRFile *image = [[ATRFile alloc] init];
         [image readFromFile:self.fileName];
         
-        // Retrieve header info
+        // Prepare header info for bindings
         self.diskSize = image.diskSize;
         self.sectorSize = image.sectorSize;
         self.sectorsFree = image.sectorsFree;
@@ -53,25 +53,13 @@
         self.sectorsCounted = [NSString stringWithFormat:@"%lu sectors", image.diskSize / image.sectorSize];
         self.diskFreeCounted =[NSString stringWithFormat:@"Free %lu kB/%lu kB", (image.sectorsFree * image.sectorSize)/1024, image.diskSize/1024];
         self.percentFree = 10 - (10 * image.sectorsFree * image.sectorSize) / image.diskSize;
-        self.dosCounted = @"DOS 2.0";
+        self.dosCounted = image.dos;
+        self.list = image.content;
         
-        //self.list = image.content;
-        self.list = [[NSMutableArray alloc] init];
-        AtariFile *af = [[AtariFile alloc]init];
-        af.name=@"fff";
-        @try
-        {
-            //[self.list addObject:af];
-            self.list = image.content;
-        }
-        @catch(NSException *exc)
-        {
-            NSLog(@"%@",exc);
-        }
-        
-        
-        // Retrieve content
-        //NSArray<AtariFile*> files = file.content;
+        // Prepare sector map data for custom control
+        const char *bytes = [image.usage bytes];
+        map.sectorsCount = image.sectorsCount;
+        [map applyUsage:bytes size:[image.usage length]];
     }
 }
 
@@ -90,20 +78,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Do any additional setup after loading the view.
     
     [self openFile];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
 }
 
 - (IBAction)openClick:(NSButton *)sender {
     [self openFile];
+}
+
+- (IBAction)tableView:(id)sender {
+    AtariFile *af = self.list[[table selectedRow]];
+    map.startSelection = af.start;
+    map.endSelection = af.start + af.length;
+    [map setNeedsDisplay:YES];
 }
 
 @end
