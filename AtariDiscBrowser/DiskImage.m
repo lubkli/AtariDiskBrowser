@@ -66,7 +66,11 @@
             self.dos = @"DOS ?";
         self.sectorsCount = [reader readWord];
         self.sectorsFree = [reader readWord];
-        self.usage = [reader readData:89];
+        
+        for (int i=0; i<5; i++)
+            NSLog(@"Z %d", [reader readByte]);
+        
+        self.usage = [reader readData:90];
         
         result = 0;
     }
