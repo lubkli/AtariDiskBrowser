@@ -57,6 +57,7 @@
 //            colors[i] = self.selectionColor;
         else colors[i] = [NSColor grayColor];
     }
+
 }
 
 - (void)drawRect:(NSRect)rect {
@@ -121,7 +122,7 @@
         if ((i >= self.startSelection) && (i < self.endSelection ))
             colorArray[i] = self.selectionColor;
         else
-            colorArray[i] = colors[i];
+            colorArray[i] = colors[i+1];
     }
     
     // use rect and color arrays to fill
@@ -138,13 +139,15 @@
 {
     for (int i=0; i<self.sectorsCount; i++)
     {
-        if ((i >= 0) && (i < 3 ))
+        if ((i >= 0) && (i <= 3 ))
             colors[i] = [NSColor orangeColor];
-        else if (i == 359)
+        else if (i == 360)
             colors[i] = [NSColor lightGrayColor];
-        else if ((i >= 360) && (i < 368 ))
+        else if ((i >= 361) && (i <= 368 ))
             colors[i] = [NSColor darkGrayColor];
     }
+    
+    colors[_sectorsCount] = [NSColor redColor];
 }
 
 - (void)applyUsage:(const char*)data size:(NSUInteger)length
@@ -157,8 +160,6 @@
         // enumerate bits
         for (int j=0; j<8; j++)
         {
-            c++;
-            
             if ((ch & 0x80) > 0)
             { // bit 1 => available sector
                 colors[c] = self.freeColor;
@@ -168,6 +169,7 @@
                 colors[c] = self.usedColor;
             }
             
+            c++;
             ch = (ch << 1);
         }
     }

@@ -80,7 +80,7 @@
         
         // Prepare sector map data for custom control
         const char *bytes = [image.usage bytes];
-        map.sectorsCount = image.sectorsCount;
+        map.sectorsCount = image.diskSize / image.sectorSize; //image.sectorsCount;
         [map applyUsage:bytes size:[image.usage length]];
     }
 }
@@ -114,8 +114,9 @@
 
 - (IBAction)tableView:(id)sender {
     AtariFile *af = self.list[[table selectedRow]];
-    map.startSelection = af.start;
-    map.endSelection = af.start + af.length;
+    NSUInteger start = af.start-1;
+    map.startSelection = start;
+    map.endSelection = start + af.length;
     [map setNeedsDisplay:YES];
 }
 
