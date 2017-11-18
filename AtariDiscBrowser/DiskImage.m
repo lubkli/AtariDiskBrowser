@@ -17,6 +17,7 @@
 @synthesize sectorsFree;
 @synthesize usage;
 
+@synthesize fileSystem;
 @synthesize content;
 
 - (id)init{
@@ -27,12 +28,12 @@
     return self;
 }
 
-- (NSInteger)readHeader:(BinaryReader *)reader
+- (NSInteger)readHeader
 {
     return 0;
 }
 
-- (NSInteger)skipHeader:(BinaryReader *)reader
+- (NSInteger)skipHeader
 {
     return 0;
 }
@@ -46,7 +47,7 @@
 //                (so it is unused), the next-lower bit corresponds to sector 1, and so on through sector 7 for the low-order bit
 //                of byte 10, then sector 8 for the high-order bit of byte 11, and so on. These are set to 1 if the sector is
 //                available, and 0 if it is in use.
-- (NSInteger)readVTOC:(BinaryReader *)reader
+- (NSInteger)readVTOC
 {
     NSInteger result;
     @try
@@ -54,18 +55,18 @@
         [reader reset];
         
         // skip header
-        [self skipHeader:reader];
+        [self skipHeader];
         
         // skip to VTOC ( begining of sector 360 = 0x168 )
         [reader moveBy:self.sectorSize*359];
         
         int8_t dosSign = [reader readByte];
         if (dosSign == 1)
-            self.dos = @"DOS 1";
+            self.fileSystem = @"DOS 1";
         else if (dosSign == 2)
-            self.dos = @"DOS 2";
+            self.fileSystem = @"DOS 2";
         else
-            self.dos = @"DOS ?";
+            self.fileSystem = @"DOS ?";
         self.sectorsCount = [reader readWord];
         self.sectorsFree = [reader readWord];
         
@@ -92,7 +93,7 @@
 //    Byte 5-12: Filename (8 characters)
 //    Byte 13-15: File extension (3 characters)
 //    Filenames are similar to MS-DOS and CP/M in that they consist of (up to) 8 characters in the main filename plus an extension of up to 3 characters.
-- (NSInteger)readDirectories:(BinaryReader *)reader
+- (NSInteger)readDirectories
 {
     NSInteger result;
     @try
@@ -102,7 +103,7 @@
         [reader reset];
         
         // skip header
-        [self skipHeader:reader];
+        [self skipHeader];
         
         // skip VTOC
         [reader moveBy:self.sectorSize*360];
@@ -173,23 +174,34 @@
 //    Sector 361-368: Directory
 //    Sector 369-719: User file space
 //    Sector 720: Unused
-- (NSInteger)readFromFile:(NSString *)fileName {
+- (NSInteger)mount:(NSString *)fileName {
     NSData *fileData = [NSData dataWithContentsOfFile:fileName];
-    BinaryReader *reader = [BinaryReader binaryReaderWithData:fileData littleEndian:TRUE];
+    reader = [BinaryReader binaryReaderWithData:fileData littleEndian:TRUE];
     
-    NSInteger error = [self readHeader:reader];
+    NSInteger error = [self readHeader];
     if (error != 0)
         return error;
     
-    error = [self readVTOC:reader];
+    error = [self readVTOC];
     if (error != 0)
         return error;
     
-    error = [self readDirectories:reader];
+    error = [self readDirectories];
     if (error != 0)
         return error;
     
     return 0;
+}
+
+- (NSData *)readFile:(NSString *)fileName {
+    for (AtariFile *fileInfo in self.content)
+    {
+        if ([fileInfo.name isEqualToString:fileName])
+        {
+            
+        }
+    }
+    return nil;
 }
 
 @end

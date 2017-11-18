@@ -1181,7 +1181,7 @@
                         <string>flags</string>
                     </declaredKeys>
                     <connections>
-                        <binding destination="XfG-lQ-9wD" name="contentArray" keyPath="self.list" id="hgJ-Ir-REw"/>
+                        <binding destination="XfG-lQ-9wD" name="contentArray" keyPath="self.imageContent" id="YGr-xu-eAp"/>
                     </connections>
                 </arrayController>
             </objects>

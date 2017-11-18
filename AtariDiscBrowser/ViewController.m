@@ -44,13 +44,12 @@
         // files and directories selected.
         NSArray *urls = [openDlg URLs];
         
-        self.fileName = [urls objectAtIndex:0];
+        self.imageFilename = [urls objectAtIndex:0];
 
         //[self.view.window setTitle:[self.fileName lastPathComponent]];
       
-        NSString *ext = [[self.fileName pathExtension] uppercaseString];
-        
-        DiskImage *image;
+        NSString *ext = [[self.imageFilename pathExtension] uppercaseString];
+                
         if ([ext isEqualToString:@"ATR"])
         {
             image = [[ATRImage alloc] init];
@@ -65,7 +64,7 @@
             [alert runModal];
         }
         
-        [image readFromFile:self.fileName];
+        [image mount:self.imageFilename];
         
         // Prepare header info for bindings
         self.diskSize = image.diskSize;
@@ -75,8 +74,8 @@
         self.sectorsCounted = [NSString stringWithFormat:@"%lu sectors", image.diskSize / image.sectorSize];
         self.diskFreeCounted =[NSString stringWithFormat:@"Free %lu kB/%lu kB", (image.sectorsFree * image.sectorSize)/1024, image.diskSize/1024];
         self.percentFree = 10 - (10 * image.sectorsFree * image.sectorSize) / image.diskSize;
-        self.dosCounted = image.dos;
-        self.list = image.content;
+        self.dosCounted = image.fileSystem;
+        self.imageContent = image.content;
         
         // Prepare sector map data for custom control
         const char *bytes = [image.usage bytes];
@@ -89,14 +88,17 @@
 
 @implementation ViewController
 
-@synthesize fileName;
+@synthesize imageFilename;
+@synthesize imageContent;
+
 @synthesize diskSize;
 @synthesize sectorSize;
+@synthesize sectorsCount;
+@synthesize sectorsFree;
 @synthesize sectorsCounted;
 @synthesize diskFreeCounted;
 @synthesize dosCounted;
 @synthesize percentFree;
-@synthesize list;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -108,26 +110,34 @@
     [super setRepresentedObject:representedObject];
 }
 
-- (IBAction)openClick:(NSButton *)sender {
-    [self openFile];
-}
-
 - (IBAction)tableView:(id)sender {
     NSInteger row = [table selectedRow];
     if (row >= 0)
     {
-        AtariFile *af = self.list[row];
-        NSUInteger start = af.start-1;
+        atariFile = self.imageContent[row];
+        NSUInteger start = atariFile.start-1;
         map.startSelection = start;
-        map.endSelection = start + af.length;
+        map.endSelection = start + atariFile.length;
         [map setNeedsDisplay:YES];
+        [viewButton setEnabled:YES];
     }
     else
     {
+        atariFile = nil;
         map.startSelection = 0;
         map.endSelection = 0;
         [map setNeedsDisplay:YES];
+        [viewButton setEnabled:NO];
     }
+}
+
+- (IBAction)viewClicked:(id)sender {
+    if (atariFile == nil)
+        return;
+    
+    NSUInteger start = atariFile.start;
+    //TODO:    [image readSector:start];
+    [image readFile:@"DOS.SYS"];
 }
 
 @end

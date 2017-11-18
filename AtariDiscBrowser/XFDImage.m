@@ -10,14 +10,38 @@
 
 @implementation XFDImage
 
-- (NSInteger)readHeader:(BinaryReader *)reader
+- (NSInteger)readHeader
 {
     NSInteger result;
     @try
     {
         [reader reset];
         
-        self.diskSize = [reader getLength];
+        NSUInteger size = [reader getLength];
+        
+        switch (size)
+        {
+            case 92160:
+                self.diskSize = 92160;
+                break;
+                
+            case 133120:
+                self.diskSize = 133120;
+                break;
+                
+            case 183936:
+                self.diskSize = 183936;
+                break;
+                
+            case 184320:
+                self.diskSize = 184320;
+                break;
+                
+                default:
+                self.diskSize = 0;
+                break;
+        }
+        
         self.sectorSize = 128;
         
         result = 0;

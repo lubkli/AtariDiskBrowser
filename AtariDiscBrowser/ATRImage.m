@@ -11,7 +11,7 @@
 
 @implementation ATRImage
 
-- (NSInteger)readHeader:(BinaryReader *)reader
+- (NSInteger)readHeader
 {
     NSInteger result;
     @try
@@ -46,7 +46,7 @@
     return result;
 }
 
-- (NSInteger)skipHeader:(BinaryReader *)reader
+- (NSInteger)skipHeader
 {
     // skip header
     [reader moveBy:16];

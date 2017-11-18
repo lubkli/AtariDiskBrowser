@@ -10,23 +10,26 @@
 #import "AtariFile.h"
 #import "BinaryReader.h"
 
-@interface DiskImage : NSObject
+@interface DiskImage : NSObject {
+    BinaryReader *reader;
+}
 
 @property (assign) NSUInteger diskSize;
 @property (assign) NSUInteger sectorSize;
 
-@property (copy) NSString *dos;
 @property (assign) NSUInteger sectorsCount;
 @property (assign) NSUInteger sectorsFree;
 @property (nonatomic) NSData *usage;
 
+@property (copy) NSString *fileSystem;
 @property (retain) NSMutableArray<AtariFile*> *content;
 
-- (NSInteger)readHeader:(BinaryReader *)reader;
-- (NSInteger)skipHeader:(BinaryReader *)reader;
-- (NSInteger)readVTOC:(BinaryReader *)reader;
-- (NSInteger)readDirectories:(BinaryReader *)reader;
+- (NSInteger)readHeader;
+- (NSInteger)skipHeader;
+- (NSInteger)readVTOC;
+- (NSInteger)readDirectories;
 
-- (NSInteger)readFromFile:(NSString *)fileName;
+- (NSInteger)mount:(NSString *)fileName;
+- (NSData *)readFile:(NSString *)fileName;
 
 @end

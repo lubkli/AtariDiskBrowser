@@ -7,15 +7,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "AtariFile.h"
+#import "DiskImage.h"
 #import "SectorMap.h"
 
 @interface ViewController : NSViewController {
+    DiskImage *image;
+    AtariFile *atariFile;
     IBOutlet NSTableView *table;
     IBOutlet SectorMap *map;
+    IBOutlet NSButton *viewButton;
 }
 
-@property (copy) NSString *fileName;
+@property (copy) NSString *imageFilename;
+@property (retain) NSMutableArray *imageContent;
+
 @property (assign) NSUInteger diskSize;
 @property (assign) NSUInteger sectorSize;
 @property (assign) NSUInteger sectorsCount;
@@ -23,7 +29,6 @@
 @property (copy) NSString *sectorsCounted;
 @property (copy) NSString *diskFreeCounted;
 @property (copy) NSString *dosCounted;
-@property (retain) NSMutableArray *list;
 @property (assign) NSUInteger percentFree;
 
 @end
