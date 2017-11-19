@@ -11,9 +11,19 @@
 
 @implementation ATRImage
 
-- (NSInteger)readHeader
+- (id)init
 {
-    NSInteger result;
+    self = [super init];
+    if (self)
+    {
+        _headerSize = 16;
+    }
+    return self;
+}
+
+- (BOOL)readHeader
+{
+    BOOL result;
     @try
     {
         [reader reset];
@@ -21,8 +31,8 @@
         uint16_t sign = [reader readWord];
         NSLog(@"NICKATARI 0x%04x", sign);
         
-        self.diskSize = 0x10 * [reader readWord];
-        self.sectorSize = [reader readWord];
+        _diskSize = 0x10 * [reader readWord];
+        _sectorSize = [reader readWord];
         
         uint16_t highSize = [reader readWord];
         NSLog(@"highSize 0x%04x", highSize);
@@ -36,21 +46,14 @@
         for (int i=0; i<5; i++)
             NSLog(@"Z %d", [reader readByte]);
         
-        result = 0;
+        result = YES;
     }
     @catch(NSException *exc)
     {
         NSLog(@"Exception: %@", exc);
-        result = [reader getOffset];
+//        result = [reader getOffset];
     }
     return result;
-}
-
-- (NSInteger)skipHeader
-{
-    // skip header
-    [reader moveBy:16];
-    return 0;
 }
 
 @end

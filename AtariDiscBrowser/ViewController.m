@@ -69,18 +69,18 @@
         // Prepare header info for bindings
         self.diskSize = image.diskSize;
         self.sectorSize = image.sectorSize;
-        self.sectorsFree = image.sectorsFree;
-        self.sectorsCount = image.sectorsCount;
+        self.sectorsFree = image.system.sectorsFree;
+        self.sectorsCount = image.system.sectorsCount;
         self.sectorsCounted = [NSString stringWithFormat:@"%lu sectors", image.diskSize / image.sectorSize];
-        self.diskFreeCounted =[NSString stringWithFormat:@"Free %lu kB/%lu kB", (image.sectorsFree * image.sectorSize)/1024, image.diskSize/1024];
-        self.percentFree = 10 - (10 * image.sectorsFree * image.sectorSize) / image.diskSize;
-        self.dosCounted = image.fileSystem;
-        self.imageContent = image.content;
+        self.diskFreeCounted =[NSString stringWithFormat:@"Free %lu kB/%lu kB", (image.system.sectorsFree * image.sectorSize)/1024, image.diskSize/1024];
+        self.percentFree = 10 - (10 * image.system.sectorsFree * image.sectorSize) / image.diskSize;
+        self.dosCounted = image.system.fileSystem;
+        self.imageContent = image.system.content;
         
         // Prepare sector map data for custom control
-        const char *bytes = [image.usage bytes];
+        const char *bytes = [image.system.usage bytes];
         map.sectorsCount = image.diskSize / image.sectorSize; //image.sectorsCount;
-        [map applyUsage:bytes size:[image.usage length]];
+        [map applyUsage:bytes size:[image.system.usage length]];
     }
 }
 

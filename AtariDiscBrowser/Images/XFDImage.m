@@ -10,9 +10,19 @@
 
 @implementation XFDImage
 
-- (NSInteger)readHeader
+- (id)init
 {
-    NSInteger result;
+    self = [super init];
+    if (self)
+    {
+        _headerSize = 0;
+    }
+    return self;
+}
+
+- (BOOL)readHeader
+{
+    BOOL result;
     @try
     {
         [reader reset];
@@ -22,34 +32,34 @@
         switch (size)
         {
             case 92160:
-                self.diskSize = 92160;
+                _diskSize = 92160;
                 break;
                 
             case 133120:
-                self.diskSize = 133120;
+                _diskSize = 133120;
                 break;
                 
             case 183936:
-                self.diskSize = 183936;
+                _diskSize = 183936;
                 break;
                 
             case 184320:
-                self.diskSize = 184320;
+                _diskSize = 184320;
                 break;
                 
                 default:
-                self.diskSize = 0;
+                _diskSize = 0;
                 break;
         }
         
-        self.sectorSize = 128;
+        _sectorSize = 128;
         
-        result = 0;
+        result = YES;
     }
     @catch(NSException *exc)
     {
         NSLog(@"Exception: %@", exc);
-        result = [reader getOffset];
+//        result = [reader getOffset];
     }
     return result;
 }
