@@ -33,26 +33,28 @@
         {
             case 92160:
                 _diskSize = 92160;
+                _sectorSize = 128;
                 break;
                 
             case 133120:
                 _diskSize = 133120;
+                _sectorSize = 128;
                 break;
                 
             case 183936:
                 _diskSize = 183936;
+                _sectorSize = 128;
                 break;
                 
             case 184320:
                 _diskSize = 184320;
+                _sectorSize = 128;
                 break;
                 
                 default:
                 _diskSize = 0;
                 break;
         }
-        
-        _sectorSize = 128;
         
         result = YES;
     }

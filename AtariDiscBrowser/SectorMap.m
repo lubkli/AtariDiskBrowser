@@ -140,14 +140,14 @@
     for (int i=0; i<self.sectorsCount; i++)
     {
         if ((i >= 0) && (i <= 3 ))
-            colors[i] = [NSColor orangeColor];
+            colors[i] = [NSColor redColor];
         else if (i == 360)
-            colors[i] = [NSColor lightGrayColor];
+            colors[i] = [NSColor blueColor];
         else if ((i >= 361) && (i <= 368 ))
-            colors[i] = [NSColor darkGrayColor];
+            colors[i] = [NSColor systemBlueColor];
     }
     
-    colors[_sectorsCount] = [NSColor redColor];
+    colors[_sectorsCount] = [NSColor blackColor];
 }
 
 - (void)applyUsage:(const char*)data size:(NSUInteger)length

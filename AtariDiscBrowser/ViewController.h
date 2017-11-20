@@ -24,6 +24,7 @@
 
 @property (assign) NSUInteger diskSize;
 @property (assign) NSUInteger sectorSize;
+@property (assign) NSUInteger sectorsUsed;
 @property (assign) NSUInteger sectorsCount;
 @property (assign) NSUInteger sectorsFree;
 @property (copy) NSString *sectorsCounted;

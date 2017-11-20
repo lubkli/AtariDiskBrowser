@@ -54,6 +54,17 @@
 //WORD, you get a "THIS FILE IS NOT AN ATARI DISK FILE" error
 //message. Try it.
 
+//Density  sides TPS SPT BPS enc total bytes
+//SD         1   40  18  128 FM  92160 (90K)
+//ED         1   40  26  128 MFM 133120 (130K)
+//SS/DD      1   40  18  256 MFM 184320 (180K)
+//SS/DD      2   40  18  256 MFM 368640 (360K)
+
+//Single-Sided, Single-Density: 40 tracks with 18 sectors per track, 128 bytes per sector. 90 KB capacity.
+//Single-Sided, Double-Density: 40 tracks with 18 sectors per track, 256 bytes per sector. 180 KB capacity. Readable by the XF551, the 815, or modified/upgraded 1050.
+//Single-Sided, Enhanced-Density: 40 tracks with 26 sectors per track, 128 bytes per sector. 130 KB capacity. Readable by the 1050 and the XF551.
+//Double-Sided, Double-Density: 80 tracks (40 tracks per side) with 18 sectors per track, 256 bytes per sector. 360 KB capacity. Readable by the XF551 only.
+
 // Disk
 //    Sector 1: Boot record
 //    Sector 2-n: DOS.SYS file (on system disks)
@@ -83,13 +94,29 @@
 
 - (NSData *)readFile:(NSString *)fileName
 {
+    NSUInteger startSector = 0;
     for (AtariFile *fileInfo in self.system.content)
     {
         if ([fileInfo.name isEqualToString:fileName])
         {
-            
+            startSector = fileInfo.start;
         }
     }
+    
+    if (startSector == 0)
+        return nil;
+    
+    [reader reset];
+    [reader moveBy:_headerSize];
+    [reader moveBy:startSector * (_sectorSize-1)];
+    NSData *data = [reader readData:_sectorSize];
+    const char *bytes = [data bytes];
+    for (int p=0; p<data.length; p++)
+    {
+        Byte b = bytes[p];
+        NSLog(@"%d 0x%02x", b, b);
+    }
+    
     return nil;
 }
 
