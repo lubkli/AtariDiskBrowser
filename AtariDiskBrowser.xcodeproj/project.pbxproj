@@ -39,7 +39,7 @@
 		57A0AB3C1FC07B9A005B3C34 /* FileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileSystem.m; sourceTree = "<group>"; };
 		57A0AB3E1FC07CEF005B3C34 /* DosFileSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DosFileSystem.h; sourceTree = "<group>"; };
 		57A0AB3F1FC07CEF005B3C34 /* DosFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DosFileSystem.m; sourceTree = "<group>"; };
-		57D5F8641FAFAEBF004D891B /* AtariDiscBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtariDiscBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57D5F8641FAFAEBF004D891B /* AtariDiskBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtariDiskBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D5F8671FAFAEBF004D891B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57D5F8681FAFAEBF004D891B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		57D5F86A1FAFAEBF004D891B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		57D5F8701FAFAEBF004D891B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		57D5F8721FAFAEBF004D891B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57D5F8731FAFAEBF004D891B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		57D5F8751FAFAEBF004D891B /* AtariDiscBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AtariDiscBrowser.entitlements; sourceTree = "<group>"; };
+		57D5F8751FAFAEBF004D891B /* AtariDiskBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AtariDiskBrowser.entitlements; sourceTree = "<group>"; };
 		57DDDCE51FBD8F5E000D6687 /* SectorMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectorMap.h; sourceTree = "<group>"; };
 		57DDDCE61FBD8F5E000D6687 /* SectorMap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectorMap.m; sourceTree = "<group>"; };
 		57DDDCE81FBF362F000D6687 /* DiskImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiskImage.h; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		57D5F85B1FAFAEBF004D891B = {
 			isa = PBXGroup;
 			children = (
-				57D5F8661FAFAEBF004D891B /* AtariDiscBrowser */,
+				57D5F8661FAFAEBF004D891B /* AtariDiskBrowser */,
 				57D5F8651FAFAEBF004D891B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -105,12 +105,12 @@
 		57D5F8651FAFAEBF004D891B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				57D5F8641FAFAEBF004D891B /* AtariDiscBrowser.app */,
+				57D5F8641FAFAEBF004D891B /* AtariDiskBrowser.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		57D5F8661FAFAEBF004D891B /* AtariDiscBrowser */ = {
+		57D5F8661FAFAEBF004D891B /* AtariDiskBrowser */ = {
 			isa = PBXGroup;
 			children = (
 				57A0AB451FC09041005B3C34 /* FileSystems */,
@@ -118,7 +118,7 @@
 				57D5F8671FAFAEBF004D891B /* AppDelegate.h */,
 				57D5F8681FAFAEBF004D891B /* AppDelegate.m */,
 				57D5F86D1FAFAEBF004D891B /* Assets.xcassets */,
-				57D5F8751FAFAEBF004D891B /* AtariDiscBrowser.entitlements */,
+				57D5F8751FAFAEBF004D891B /* AtariDiskBrowser.entitlements */,
 				5757BABF1FB4C85C00CEDB10 /* AtariFile.h */,
 				5757BAC01FB4C85C00CEDB10 /* AtariFile.m */,
 				57234B2E1FB1033400DFD5E9 /* BinaryReader.h */,
@@ -133,15 +133,15 @@
 				57D5F86A1FAFAEBF004D891B /* ViewController.h */,
 				57D5F86B1FAFAEBF004D891B /* ViewController.m */,
 			);
-			path = AtariDiscBrowser;
+			path = AtariDiskBrowser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		57D5F8631FAFAEBF004D891B /* AtariDiscBrowser */ = {
+		57D5F8631FAFAEBF004D891B /* AtariDiskBrowser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 57D5F8781FAFAEBF004D891B /* Build configuration list for PBXNativeTarget "AtariDiscBrowser" */;
+			buildConfigurationList = 57D5F8781FAFAEBF004D891B /* Build configuration list for PBXNativeTarget "AtariDiskBrowser" */;
 			buildPhases = (
 				57D5F8601FAFAEBF004D891B /* Sources */,
 				57D5F8611FAFAEBF004D891B /* Frameworks */,
@@ -151,9 +151,9 @@
 			);
 			dependencies = (
 			);
-			name = AtariDiscBrowser;
+			name = AtariDiskBrowser;
 			productName = AtariDiscBrowser;
-			productReference = 57D5F8641FAFAEBF004D891B /* AtariDiscBrowser.app */;
+			productReference = 57D5F8641FAFAEBF004D891B /* AtariDiskBrowser.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -171,7 +171,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 57D5F85F1FAFAEBF004D891B /* Build configuration list for PBXProject "AtariDiscBrowser" */;
+			buildConfigurationList = 57D5F85F1FAFAEBF004D891B /* Build configuration list for PBXProject "AtariDiskBrowser" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -184,7 +184,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				57D5F8631FAFAEBF004D891B /* AtariDiscBrowser */,
+				57D5F8631FAFAEBF004D891B /* AtariDiskBrowser */,
 			);
 		};
 /* End PBXProject section */
@@ -343,12 +343,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AtariDiscBrowser/AtariDiscBrowser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AtariDiskBrowser/AtariDiskBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = AtariDiscBrowser/Info.plist;
+				INFOPLIST_FILE = AtariDiskBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Klimes.AtariDiscBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = Klimes.AtariDiskBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -357,12 +357,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AtariDiscBrowser/AtariDiscBrowser.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AtariDiskBrowser/AtariDiskBrowser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = AtariDiscBrowser/Info.plist;
+				INFOPLIST_FILE = AtariDiskBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Klimes.AtariDiscBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = Klimes.AtariDiskBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -370,7 +370,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		57D5F85F1FAFAEBF004D891B /* Build configuration list for PBXProject "AtariDiscBrowser" */ = {
+		57D5F85F1FAFAEBF004D891B /* Build configuration list for PBXProject "AtariDiskBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57D5F8761FAFAEBF004D891B /* Debug */,
@@ -379,7 +379,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		57D5F8781FAFAEBF004D891B /* Build configuration list for PBXNativeTarget "AtariDiscBrowser" */ = {
+		57D5F8781FAFAEBF004D891B /* Build configuration list for PBXNativeTarget "AtariDiskBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				57D5F8791FAFAEBF004D891B /* Debug */,
