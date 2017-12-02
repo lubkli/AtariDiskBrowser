@@ -137,9 +137,22 @@
     if (atariFile == nil)
         return;
     
-    NSUInteger start = atariFile.start;
-    //TODO:    [image readSector:start];
-    [image readFile:@"DOS     "];
+    // create the save panel
+    NSSavePanel *panel = [NSSavePanel savePanel];
+    
+    // set a new file name
+    NSString *name = [atariFile.name stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *target = [NSString stringWithFormat:@"%@.%@", name, atariFile.ext];
+    [panel setNameFieldStringValue:target];
+    
+    if ( [panel runModal] == NSModalResponseOK )
+    {
+        NSURL *url = [panel URL];
+        NSData *fileContent = [image readFile:[NSString stringWithFormat:@"%@", atariFile.name]];
+        NSError *error = nil;
+        [fileContent writeToFile:[url path] options:NSDataWritingAtomic error:&error];
+        NSLog(@"Write returned error: %@", [error localizedDescription]);
+    }
 }
 
 @end

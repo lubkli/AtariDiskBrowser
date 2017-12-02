@@ -138,4 +138,9 @@
     return YES;
 }
 
+- (NSData *)readFile:(NSString *)fileName
+{
+    return nil;
+}
+
 @end

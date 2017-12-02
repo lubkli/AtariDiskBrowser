@@ -47,4 +47,9 @@
 {
     return NO;
 }
+
+- (NSData *)readFile:(NSString *)fileName
+{
+    return nil;
+}
 @end
