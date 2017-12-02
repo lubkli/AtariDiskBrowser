@@ -39,7 +39,7 @@
 		57A0AB3C1FC07B9A005B3C34 /* FileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileSystem.m; sourceTree = "<group>"; };
 		57A0AB3E1FC07CEF005B3C34 /* DosFileSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DosFileSystem.h; sourceTree = "<group>"; };
 		57A0AB3F1FC07CEF005B3C34 /* DosFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DosFileSystem.m; sourceTree = "<group>"; };
-		57D5F8641FAFAEBF004D891B /* AtariDiskBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtariDiskBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		57D5F8641FAFAEBF004D891B /* Atari Disk Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Atari Disk Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D5F8671FAFAEBF004D891B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		57D5F8681FAFAEBF004D891B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		57D5F86A1FAFAEBF004D891B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		57D5F8651FAFAEBF004D891B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				57D5F8641FAFAEBF004D891B /* AtariDiskBrowser.app */,
+				57D5F8641FAFAEBF004D891B /* Atari Disk Browser.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,7 +153,7 @@
 			);
 			name = AtariDiskBrowser;
 			productName = AtariDiscBrowser;
-			productReference = 57D5F8641FAFAEBF004D891B /* AtariDiskBrowser.app */;
+			productReference = 57D5F8641FAFAEBF004D891B /* Atari Disk Browser.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -349,7 +349,7 @@
 				INFOPLIST_FILE = AtariDiskBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Klimes.AtariDiskBrowser;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Atari Disk Browser";
 			};
 			name = Debug;
 		};
@@ -363,7 +363,7 @@
 				INFOPLIST_FILE = AtariDiskBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Klimes.AtariDiskBrowser;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Atari Disk Browser";
 			};
 			name = Release;
 		};

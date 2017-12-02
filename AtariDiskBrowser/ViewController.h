@@ -32,5 +32,7 @@
 @property (copy) NSString *dosCounted;
 @property (assign) NSUInteger percentFree;
 
+- (void)openFileName:(NSString*)fileName;
+
 @end
 
