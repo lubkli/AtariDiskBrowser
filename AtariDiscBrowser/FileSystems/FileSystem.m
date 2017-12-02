@@ -22,7 +22,7 @@
 @synthesize content;
 @synthesize fileSystem;
 
-- (id)initWithBinaryReade:(BinaryReader*)binaryReaded headerSize:(NSUInteger)header diskSize:(NSUInteger)disk sectorSize:(NSUInteger)sector
+- (id)initWithBinaryReader:(BinaryReader*)binaryReaded headerSize:(NSUInteger)header diskSize:(NSUInteger)disk sectorSize:(NSUInteger)sector
 {
     self = [super init];
     if (self)

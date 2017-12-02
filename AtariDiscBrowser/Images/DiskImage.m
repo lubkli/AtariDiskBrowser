@@ -82,10 +82,10 @@
     if (![self readHeader])
         return 1;
 
-    _system = [[DosFileSystem alloc] initWithBinaryReade:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
+    _system = [[DosFileSystem alloc] initWithBinaryReader:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
     
     if (!_system.isValid)
-        _system = [[SpartaDos alloc] initWithBinaryReade:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
+        _system = [[SpartaDos alloc] initWithBinaryReader:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
     
     if (![_system readVTOC])
         return 2;

@@ -30,7 +30,7 @@
 @property (retain) NSMutableArray<AtariFile*> *content;
 @property (copy) NSString *fileSystem;
 
-- (id)initWithBinaryReade:(BinaryReader*)binaryReaded headerSize:(NSUInteger)header diskSize:(NSUInteger)disk sectorSize:(NSUInteger)sector;
+- (id)initWithBinaryReader:(BinaryReader*)binaryReaded headerSize:(NSUInteger)header diskSize:(NSUInteger)disk sectorSize:(NSUInteger)sector;
 
 - (BOOL)readVTOC;
 - (BOOL)readDirectories;
