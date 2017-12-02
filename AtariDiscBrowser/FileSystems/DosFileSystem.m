@@ -21,6 +21,8 @@
 //                available, and 0 if it is in use.
 - (BOOL)readVTOC
 {
+    self.isValid = YES;
+    
     [reader reset];
     
     // skip header
@@ -28,6 +30,10 @@
     
     // skip to VTOC ( begining of sector 360 = 0x168 )
     [reader moveBy:sectorSize*359];
+    
+    //Read this values from BOOT sector in Ctor
+    self.sectorsBoot = 3;
+    self.bootAddress = 0x700;
     
     int8_t dosSign = [reader readByte];
     if (dosSign == 1)
@@ -39,9 +45,13 @@
     
     self.sectorsCount = [reader readWord];
     self.sectorsFree = [reader readWord];
+    self.isValid = self.isValid & (self.sectorsCount >= self.sectorsFree);
     
     for (int i=0; i<5; i++)
-        NSLog(@"Z %d", [reader readByte]);
+    {
+        uint8_t zero = [reader readByte];
+        self.isValid = self.isValid & (zero == 0);
+    }
     
     self.usage = [reader readData:90];
     

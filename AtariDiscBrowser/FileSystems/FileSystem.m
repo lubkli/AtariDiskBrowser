@@ -10,6 +10,12 @@
 
 @implementation FileSystem
 
+@synthesize isValid;
+@synthesize sectorsBoot;
+@synthesize bootAddress;
+@synthesize initAddress;
+@synthesize contAddress;
+@synthesize sectorMap;
 @synthesize sectorsCount;
 @synthesize sectorsFree;
 @synthesize usage;
@@ -26,6 +32,8 @@
         diskSize = disk;
         sectorSize = sector;
         self.content = [[NSMutableArray<AtariFile*> alloc] init];
+        
+        [self readVTOC];
     }
     return self;
 }

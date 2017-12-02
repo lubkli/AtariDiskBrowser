@@ -8,6 +8,7 @@
 
 #import "DiskImage.h"
 #import "DosFileSystem.h"
+#import "SpartaDos.h"
 
 @implementation DiskImage
 
@@ -80,8 +81,11 @@
     
     if (![self readHeader])
         return 1;
-    
+
     _system = [[DosFileSystem alloc] initWithBinaryReade:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
+    
+    if (!_system.isValid)
+        _system = [[SpartaDos alloc] initWithBinaryReade:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
     
     if (![_system readVTOC])
         return 2;
@@ -107,8 +111,8 @@
         return nil;
     
     [reader reset];
-    [reader moveBy:_headerSize];
-    [reader moveBy:startSector * (_sectorSize-1)];
+//    [reader moveBy:_headerSize];
+//    [reader moveBy:startSector * (_sectorSize-1)];
     NSData *data = [reader readData:_sectorSize];
     const char *bytes = [data bytes];
     for (int p=0; p<data.length; p++)

@@ -18,6 +18,12 @@
     NSUInteger sectorSize;
 }
 
+@property (assign) BOOL isValid;
+@property (assign) NSUInteger sectorsBoot;
+@property (assign) NSUInteger bootAddress;
+@property (assign) NSUInteger initAddress;
+@property (assign) NSUInteger contAddress;
+@property (assign) NSUInteger sectorMap;
 @property (assign) NSUInteger sectorsCount;
 @property (assign) NSUInteger sectorsFree;
 @property (nonatomic) NSData *usage;

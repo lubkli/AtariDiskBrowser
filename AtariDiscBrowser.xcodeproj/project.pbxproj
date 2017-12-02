@@ -11,6 +11,7 @@
 		5729DBB01FB3BB500068ABCC /* ATRImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5729DBAF1FB3BB500068ABCC /* ATRImage.m */; };
 		5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */; };
 		5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BAC01FB4C85C00CEDB10 /* AtariFile.m */; };
+		5784BA281FC384E70040CCE0 /* SpartaDos.m in Sources */ = {isa = PBXBuildFile; fileRef = 5784BA271FC384E70040CCE0 /* SpartaDos.m */; };
 		57A0AB3D1FC07B9A005B3C34 /* FileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A0AB3C1FC07B9A005B3C34 /* FileSystem.m */; };
 		57A0AB401FC07CEF005B3C34 /* DosFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A0AB3F1FC07CEF005B3C34 /* DosFileSystem.m */; };
 		57D5F8691FAFAEBF004D891B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D5F8681FAFAEBF004D891B /* AppDelegate.m */; };
@@ -32,6 +33,8 @@
 		5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringExtension.m; sourceTree = "<group>"; };
 		5757BABF1FB4C85C00CEDB10 /* AtariFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtariFile.h; sourceTree = "<group>"; };
 		5757BAC01FB4C85C00CEDB10 /* AtariFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtariFile.m; sourceTree = "<group>"; };
+		5784BA261FC384E70040CCE0 /* SpartaDos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpartaDos.h; sourceTree = "<group>"; };
+		5784BA271FC384E70040CCE0 /* SpartaDos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpartaDos.m; sourceTree = "<group>"; };
 		57A0AB3B1FC07B9A005B3C34 /* FileSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileSystem.h; sourceTree = "<group>"; };
 		57A0AB3C1FC07B9A005B3C34 /* FileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileSystem.m; sourceTree = "<group>"; };
 		57A0AB3E1FC07CEF005B3C34 /* DosFileSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DosFileSystem.h; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 				57A0AB3F1FC07CEF005B3C34 /* DosFileSystem.m */,
 				57A0AB3B1FC07B9A005B3C34 /* FileSystem.h */,
 				57A0AB3C1FC07B9A005B3C34 /* FileSystem.m */,
+				5784BA261FC384E70040CCE0 /* SpartaDos.h */,
+				5784BA271FC384E70040CCE0 /* SpartaDos.m */,
 			);
 			path = FileSystems;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				57234B301FB1033400DFD5E9 /* BinaryReader.m in Sources */,
 				57D5F8741FAFAEBF004D891B /* main.m in Sources */,
 				57D5F8691FAFAEBF004D891B /* AppDelegate.m in Sources */,
+				5784BA281FC384E70040CCE0 /* SpartaDos.m in Sources */,
 				57DDDCE71FBD8F5E000D6687 /* SectorMap.m in Sources */,
 				5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */,
 				57DDDCED1FBF38FA000D6687 /* XFDImage.m in Sources */,
