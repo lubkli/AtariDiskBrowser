@@ -44,12 +44,14 @@
         NSArray *urls = [openDlg URLs];
         NSString *fileName = [urls objectAtIndex:0];
         
-        ViewController *viewController = (ViewController*)[_myController contentViewController];
+        NSWindowController *myController = [_storyBoard instantiateControllerWithIdentifier:@"WindowController"];
+        
+        ViewController *viewController = (ViewController*)[myController contentViewController];
         [viewController openFileName:fileName];
         NSString *theFileName = [[fileName lastPathComponent] stringByDeletingPathExtension];
         [[[viewController view] window] setTitle:theFileName];
         
-        [_myController showWindow:self];
+        [myController showWindow:self];
     }
 }
 
@@ -61,9 +63,9 @@
     // Insert code here to initialize your application
     
     // get a reference to the storyboard
-    NSStoryboard *storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    _storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     // instantiate your window controller
-    _myController = [storyBoard instantiateControllerWithIdentifier:@"WindowController"];
+//    _myController = [storyBoard instantiateControllerWithIdentifier:@"WindowController"];
     // show the window
     // [_myController showWindow:self];
     

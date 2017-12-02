@@ -10,7 +10,8 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property NSWindowController *myController;
+@property NSStoryboard *storyBoard;
+//@property NSWindowController *myController;
 
 - (IBAction)openDocument:(id)sender;
 
