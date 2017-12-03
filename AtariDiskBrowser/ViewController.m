@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "ATRImage.h"
 #import "XFDImage.h"
+//#import "BootViewController.h"
+//#import "SectorsViewController.h"
 
 @interface ViewController (Private)
 
@@ -35,6 +37,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender
+{
+//    if ([[segue identifier] isEqualToString:@"sectorsSeque"])
+//    {
+//        SectorsViewController *sectors = (SectorsViewController*)[segue destinationController];
+//        sectors.representedObject = image.system;
+//    }
+//    else if ([[segue identifier] isEqualToString:@"bootSeque"])
+//    {
+//        BootViewController *sectors = (BootViewController*)[segue destinationController];
+//        sectors.representedObject = image.system;
+//    }
+    
+    if ([segue.destinationController respondsToSelector:@selector(setFileSystem:)]) {
+        [segue.destinationController performSelector:@selector(setFileSystem:)
+                                              withObject:[image system]];
+    }
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -87,8 +108,6 @@
 - (void)openFileName:(NSString*)fileName {
     
     self.imageFilename = fileName;
-    
-    //[self.view.window setTitle:[self.fileName lastPathComponent]];
     
     NSString *ext = [[self.imageFilename pathExtension] uppercaseString];
     

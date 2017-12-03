@@ -43,20 +43,21 @@
         // files and directories selected.
         NSArray *urls = [openDlg URLs];
         NSString *fileName = [urls objectAtIndex:0];
-        
+        // instantiate your window controller
         NSWindowController *myController = [_storyBoard instantiateControllerWithIdentifier:@"WindowController"];
-        
+        // get a view controller and open disk image
         ViewController *viewController = (ViewController*)[myController contentViewController];
         [viewController openFileName:fileName];
+        // set window title
         NSString *theFileName = [[fileName lastPathComponent] stringByDeletingPathExtension];
         [[[viewController view] window] setTitle:theFileName];
-        
+        // show the window
         [myController showWindow:self];
     }
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
-    return YES;
+    return NO;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
@@ -64,11 +65,7 @@
     
     // get a reference to the storyboard
     _storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
-    // instantiate your window controller
-//    _myController = [storyBoard instantiateControllerWithIdentifier:@"WindowController"];
-    // show the window
-    // [_myController showWindow:self];
-    
+
     // open file with image
     [self openFile];
 }
@@ -76,6 +73,10 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+}
+
+- (IBAction)newDocument:(id)sender {
+    NSLog(@"New image");
 }
 
 - (IBAction)openDocument:(id)sender {

@@ -34,6 +34,7 @@
 
 - (BOOL)readVTOC;
 - (BOOL)readDirectories;
+- (NSData *)readBootRecord;
 - (NSData *)readFile:(NSString *)fileName;
 
 @end

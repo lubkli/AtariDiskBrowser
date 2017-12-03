@@ -48,6 +48,11 @@
     return NO;
 }
 
+- (NSData *)readBootRecord
+{
+    return nil;
+}
+
 - (NSData *)readFile:(NSString *)fileName
 {
     return nil;

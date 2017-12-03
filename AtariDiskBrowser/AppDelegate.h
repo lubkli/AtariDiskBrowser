@@ -11,8 +11,8 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property NSStoryboard *storyBoard;
-//@property NSWindowController *myController;
 
+- (IBAction)newDocument:(id)sender;
 - (IBAction)openDocument:(id)sender;
 
 @end

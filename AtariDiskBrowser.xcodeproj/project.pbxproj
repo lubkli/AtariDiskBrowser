@@ -19,6 +19,8 @@
 		57D5F86E1FAFAEBF004D891B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D5F86D1FAFAEBF004D891B /* Assets.xcassets */; };
 		57D5F8711FAFAEBF004D891B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57D5F86F1FAFAEBF004D891B /* Main.storyboard */; };
 		57D5F8741FAFAEBF004D891B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D5F8731FAFAEBF004D891B /* main.m */; };
+		57DB73981FD3FB930051A9A1 /* SectorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB73971FD3FB930051A9A1 /* SectorsViewController.m */; };
+		57DB739B1FD3FC070051A9A1 /* BootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB739A1FD3FC070051A9A1 /* BootViewController.m */; };
 		57DDDCE71FBD8F5E000D6687 /* SectorMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DDDCE61FBD8F5E000D6687 /* SectorMap.m */; };
 		57DDDCEA1FBF362F000D6687 /* DiskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DDDCE91FBF362F000D6687 /* DiskImage.m */; };
 		57DDDCED1FBF38FA000D6687 /* XFDImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DDDCEC1FBF38FA000D6687 /* XFDImage.m */; };
@@ -49,6 +51,10 @@
 		57D5F8721FAFAEBF004D891B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57D5F8731FAFAEBF004D891B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		57D5F8751FAFAEBF004D891B /* AtariDiskBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AtariDiskBrowser.entitlements; sourceTree = "<group>"; };
+		57DB73961FD3FB930051A9A1 /* SectorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectorsViewController.h; sourceTree = "<group>"; };
+		57DB73971FD3FB930051A9A1 /* SectorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectorsViewController.m; sourceTree = "<group>"; };
+		57DB73991FD3FC070051A9A1 /* BootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BootViewController.h; sourceTree = "<group>"; };
+		57DB739A1FD3FC070051A9A1 /* BootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BootViewController.m; sourceTree = "<group>"; };
 		57DDDCE51FBD8F5E000D6687 /* SectorMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectorMap.h; sourceTree = "<group>"; };
 		57DDDCE61FBD8F5E000D6687 /* SectorMap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectorMap.m; sourceTree = "<group>"; };
 		57DDDCE81FBF362F000D6687 /* DiskImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiskImage.h; sourceTree = "<group>"; };
@@ -132,6 +138,10 @@
 				57DDDCE61FBD8F5E000D6687 /* SectorMap.m */,
 				57D5F86A1FAFAEBF004D891B /* ViewController.h */,
 				57D5F86B1FAFAEBF004D891B /* ViewController.m */,
+				57DB73961FD3FB930051A9A1 /* SectorsViewController.h */,
+				57DB73971FD3FB930051A9A1 /* SectorsViewController.m */,
+				57DB73991FD3FC070051A9A1 /* BootViewController.h */,
+				57DB739A1FD3FC070051A9A1 /* BootViewController.m */,
 			);
 			path = AtariDiskBrowser;
 			sourceTree = "<group>";
@@ -218,7 +228,9 @@
 				57DDDCEA1FBF362F000D6687 /* DiskImage.m in Sources */,
 				57A0AB3D1FC07B9A005B3C34 /* FileSystem.m in Sources */,
 				5729DBB01FB3BB500068ABCC /* ATRImage.m in Sources */,
+				57DB73981FD3FB930051A9A1 /* SectorsViewController.m in Sources */,
 				5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */,
+				57DB739B1FD3FC070051A9A1 /* BootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

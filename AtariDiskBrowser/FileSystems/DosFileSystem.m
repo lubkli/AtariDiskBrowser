@@ -109,6 +109,37 @@
     return YES;
 }
 
+// Boot record
+//
+//    Sector 1 is the boot record. It has this structure:
+//    Byte 0: 0 (representing boot flag)
+//    Byte 1: 1 (representing the number of sectors the boot record takes)
+//    Byte 2-3: Boot address (0700)
+//    Byte 4-5: Init address
+//    Byte 6: 4B (JMP command used with address in following 2 bytes)
+//    Byte 7-8: Boot read continuation address
+//    Byte 9: Max # of files open concurrently (1-8)
+//    Byte 10: Specific drive numbers supported (bitmap where low-order bit means drive 1, next bit drive 2, and so on up to 4)
+//    Byte 11: Buffer allocation direction (set to 0)
+//    Byte 12-13: Boot image end address + 1
+//    Byte 14: Boot flag (must be nonzero if DOS.SYS is on disk)
+//    Byte 15: Sector count (not used)
+//    Byte 16-17: DOS.SYS starting sector number
+//    Byte 18-127: Code for second phase of boot
+- (NSData *)readBootRecord
+{
+    [reader reset];
+    [reader moveBy:headerSize];
+    NSData *data = [reader readData:sectorSize];
+    const char *bytes = [data bytes];
+    for (int p=0; p<data.length; p++)
+    {
+        Byte b = bytes[p];
+        NSLog(@"%d - %d %c 0x%02x", p, b, b, b);
+    }
+    return data;
+}
+
 // Data sector
 //
 //    A sector within a file has its first 125 bytes (0-124) used for raw data.
