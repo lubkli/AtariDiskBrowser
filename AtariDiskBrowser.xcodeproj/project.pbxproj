@@ -74,7 +74,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		57A0AB441FC08E71005B3C34 /* Images */ = {
+		57A0AB441FC08E71005B3C34 /* DiskImages */ = {
 			isa = PBXGroup;
 			children = (
 				5729DBAE1FB3BB500068ABCC /* ATRImage.h */,
@@ -84,7 +84,7 @@
 				57DDDCEB1FBF38FA000D6687 /* XFDImage.h */,
 				57DDDCEC1FBF38FA000D6687 /* XFDImage.m */,
 			);
-			path = Images;
+			path = DiskImages;
 			sourceTree = "<group>";
 		};
 		57A0AB451FC09041005B3C34 /* FileSystems */ = {
@@ -119,8 +119,10 @@
 		57D5F8661FAFAEBF004D891B /* AtariDiskBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				57A0AB441FC08E71005B3C34 /* DiskImages */,
 				57A0AB451FC09041005B3C34 /* FileSystems */,
-				57A0AB441FC08E71005B3C34 /* Images */,
+				57DB739E1FD4158F0051A9A1 /* Views */,
+				57DB739F1FD415B70051A9A1 /* ViewControllers */,
 				57D5F8671FAFAEBF004D891B /* AppDelegate.h */,
 				57D5F8681FAFAEBF004D891B /* AppDelegate.m */,
 				57D5F86D1FAFAEBF004D891B /* Assets.xcassets */,
@@ -134,16 +136,30 @@
 				57D5F86F1FAFAEBF004D891B /* Main.storyboard */,
 				5757BABC1FB4AE4B00CEDB10 /* NSStringExtension.h */,
 				5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */,
-				57DDDCE51FBD8F5E000D6687 /* SectorMap.h */,
-				57DDDCE61FBD8F5E000D6687 /* SectorMap.m */,
-				57D5F86A1FAFAEBF004D891B /* ViewController.h */,
-				57D5F86B1FAFAEBF004D891B /* ViewController.m */,
-				57DB73961FD3FB930051A9A1 /* SectorsViewController.h */,
-				57DB73971FD3FB930051A9A1 /* SectorsViewController.m */,
-				57DB73991FD3FC070051A9A1 /* BootViewController.h */,
-				57DB739A1FD3FC070051A9A1 /* BootViewController.m */,
 			);
 			path = AtariDiskBrowser;
+			sourceTree = "<group>";
+		};
+		57DB739E1FD4158F0051A9A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				57DDDCE51FBD8F5E000D6687 /* SectorMap.h */,
+				57DDDCE61FBD8F5E000D6687 /* SectorMap.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		57DB739F1FD415B70051A9A1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				57DB73991FD3FC070051A9A1 /* BootViewController.h */,
+				57DB739A1FD3FC070051A9A1 /* BootViewController.m */,
+				57DB73961FD3FB930051A9A1 /* SectorsViewController.h */,
+				57DB73971FD3FB930051A9A1 /* SectorsViewController.m */,
+				57D5F86A1FAFAEBF004D891B /* ViewController.h */,
+				57D5F86B1FAFAEBF004D891B /* ViewController.m */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
