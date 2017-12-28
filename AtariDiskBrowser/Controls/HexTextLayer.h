@@ -10,7 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface HexTextLayer : CALayer {
-    NSMutableArray<NSString*> *stringArray;
+    NSMutableArray<NSString*> *dataArray;
+    NSMutableArray *textArray;
 }
 
 - (void)LoadWithData:(NSData *)data;

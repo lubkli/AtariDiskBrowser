@@ -15,10 +15,10 @@
     BinaryReader *reader;
     NSUInteger headerSize;
     NSUInteger diskSize;
-    NSUInteger sectorSize;
 }
 
 @property (assign) BOOL isValid;
+@property (assign) NSUInteger sectorSize;
 @property (assign) NSUInteger sectorsBoot;
 @property (assign) NSUInteger sectorsSystem;
 @property (assign) NSUInteger bootAddress;

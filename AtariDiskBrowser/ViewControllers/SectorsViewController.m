@@ -34,6 +34,8 @@
 -(void)refreshView {
     NSData *fileData = [self.fileSystem readSector:_currentSector];
     self.hexField.data = fileData;
+    self.hexField.sectorSize = self.fileSystem.sectorSize;
+    
     
     if (_currentSector <= 0) {
         [self.previousButton setHidden:YES];

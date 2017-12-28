@@ -31,7 +31,7 @@
     [reader moveBy:headerSize];
     
     // skip to VTOC ( begining of sector 360 = 0x168 )
-    [reader moveBy:sectorSize*359];
+    [reader moveBy:self.sectorSize*359];
     
     //Read this values from BOOT sector in Ctor
     self.sectorsBoot = 3;
@@ -82,9 +82,9 @@
     [reader moveBy:headerSize];
     
     // skip VTOC
-    [reader moveBy:sectorSize*360];
+    [reader moveBy:self.sectorSize*360];
     
-    NSUInteger cnt = 8 * (sectorSize/16);
+    NSUInteger cnt = 8 * (self.sectorSize/16);
     for (int j=0; j<cnt; j++)
     {
         AtariFile *file = [[AtariFile alloc] init];
@@ -131,7 +131,7 @@
 {
     [reader reset];
     [reader moveBy:headerSize];
-    NSData *data = [reader readData:sectorSize];
+    NSData *data = [reader readData:self.sectorSize];
     const char *bytes = [data bytes];
     for (int p=0; p<data.length; p++)
     {
@@ -172,13 +172,13 @@
     
     [reader reset];
     [reader moveBy:headerSize];
-    [reader moveBy:(start-1) * sectorSize];
+    [reader moveBy:(start-1) * self.sectorSize];
     
     completeData = [[NSMutableData alloc] init];
     while (!isEOF && current <= length)
     {
         current++;
-        NSData *data = [reader readData:sectorSize];
+        NSData *data = [reader readData:self.sectorSize];
         const char *bytes = [data bytes];
 //        for (int p=0; p<data.length; p++)
 //        {

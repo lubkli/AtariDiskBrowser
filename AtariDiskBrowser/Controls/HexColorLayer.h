@@ -9,11 +9,13 @@
 #import <Cocoa/Cocoa.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface HexLayer : CALayer {
-    NSUInteger xFirstLine;
-    NSUInteger xSecondLine;
+@interface HexColorLayer : CALayer {
+    double xStep;
+    double yStep;
     NSPoint selectionPoint;
 }
+
+@property (assign) NSUInteger sectorSize;
 
 - (void)selectAtPoint:(NSPoint)point;
 

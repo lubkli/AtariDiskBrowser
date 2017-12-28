@@ -8,18 +8,18 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "HexField.h"
-#import "HexLayer.h"
+#import "HexColorLayer.h"
 #import "HexTextLayer.h"
 
 @implementation HexField {
-    HexLayer *_hexLayer;
+    HexColorLayer *_hexLayer;
     HexTextLayer* _textLayer;
 }
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
     if ((self = [super initWithFrame:frameRect])) {
         //Add background layer
-        _hexLayer = [HexLayer layer];
+        _hexLayer = [HexColorLayer layer];
         [self.layer addSublayer:_hexLayer];
         //Add foreground layer
         _textLayer = [HexTextLayer layer];
@@ -35,7 +35,7 @@
     if (self) {
         self.wantsLayer = YES;
         //Add background layer
-        _hexLayer = [HexLayer layer];
+        _hexLayer = [HexColorLayer layer];
         [self.layer addSublayer:_hexLayer];
         //Add foreground layer
         _textLayer = [HexTextLayer layer];
@@ -66,12 +66,14 @@
     [_textLayer LoadWithData:data];
 }
 
+- (void)setSectorSize:(NSUInteger)sectorSize {
+    _hexLayer.sectorSize = sectorSize;
+}
+
 - (void)mouseDown:(NSEvent *)event {
     NSPoint mouseDownPos = [event locationInWindow];
-//    NSPoint layerPos = [self convertPoint:mouseDownPos toView:self];
-//    CALayer *theLayer = [self.layer hitTest:thePoint];
-    mouseDownPos.x -= [self frame].origin.x;
-    mouseDownPos.y -= [self frame].origin.y;
+    mouseDownPos.x -= self.frame.origin.x;
+    mouseDownPos.y -= self.frame.origin.y;
     [_hexLayer selectAtPoint:mouseDownPos];
 }
 

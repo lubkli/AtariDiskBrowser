@@ -11,5 +11,6 @@
 @interface HexField : NSControl 
 
 - (void)setData:(NSData *)data;
+- (void)setSectorSize:(NSUInteger)sectorSize;
 
 @end

@@ -90,7 +90,7 @@
     // skip header
     [reader moveBy:headerSize];
     
-    [reader moveBy:sectorSize*self.sectorMap];
+    [reader moveBy:self.sectorSize*self.sectorMap];
     
     NSData *mainDirEntry = [reader readData:23];
     

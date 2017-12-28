@@ -11,6 +11,7 @@
 @implementation FileSystem
 
 @synthesize isValid;
+@synthesize sectorSize;
 @synthesize sectorsBoot;
 @synthesize sectorsSystem;
 @synthesize bootAddress;

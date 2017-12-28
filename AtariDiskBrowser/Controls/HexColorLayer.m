@@ -1,0 +1,90 @@
+//
+//  HexLayer.m
+//  AtariDiskBrowser
+//
+//  Created by Lubomír Klimeš on 03/12/2017.
+//  Copyright © 2017 Lubomír Klimeš. All rights reserved.
+//
+
+#import "HexColorLayer.h"
+
+@implementation HexColorLayer
+
+@synthesize sectorSize;
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        xStep = 23.3;
+        yStep = 14;
+    }
+    return self;
+}
+
+- (void)drawInContext:(CGContextRef)ctx {
+    CGContextSaveGState(ctx);
+
+    CGRect bounds = CGRectInset(self.frame, 0, 0);
+    bounds.origin.x += (2 * xStep);
+    bounds.origin.y += yStep;
+    bounds.size.width -= (2 * xStep);
+    bounds.size.height -= yStep;
+    
+//    CGContextSetFillColorWithColor(ctx, [[NSColor blueColor] CGColor]);
+//    CGContextFillRect(ctx, bounds);
+    
+    NSUInteger position = 0;
+    NSUInteger row = 0;
+    NSColor *altColor = [NSColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
+   
+    for (int i = 0; i < self.sectorSize / 16; i++)
+    {
+        if (row > 0) {
+            NSColor *color = (row % 2) ? [NSColor whiteColor] : altColor;
+            CGContextSetFillColorWithColor(ctx, [color CGColor]);
+//            CGContextSetShadowWithColor(ctx, CGSizeMake(0, 1), 1.0, [NSColor redColor].CGColor);
+            CGRect lineFrame = CGRectMake(bounds.origin.x, bounds.size.height - position - 3, 17 * xStep, yStep);
+            CGContextFillRect(ctx, lineFrame);
+        }
+        position += yStep;
+        row++;
+    }
+    
+    NSLog(@"%f, %f",selectionPoint.x, selectionPoint.y);
+    
+    // Selection
+    int16_t xDiff = selectionPoint.x - bounds.origin.x;
+    if (xDiff > 0 && selectionPoint.x < 19 * xStep
+        && selectionPoint.y < bounds.size.height
+        && selectionPoint.y > bounds.size.height - (self.sectorSize / 16 * yStep)) {
+        NSUInteger x = xDiff / xStep;
+        if (x != 8) {
+            NSUInteger y = selectionPoint.y / yStep;
+            // Draw background of selected byte
+            CGContextSetFillColorWithColor(ctx, [[NSColor colorWithRed:1.0 green:0.9 blue:0.0 alpha:1.0] CGColor]);
+            CGRect selectionFrame = CGRectMake(x * xStep + bounds.origin.x, y * yStep - 4, xStep, yStep);
+            CGContextFillRect(ctx, selectionFrame);
+            // Draw background of selected column
+            selectionFrame = CGRectMake(x * xStep + bounds.origin.x, bounds.size.height - 3, xStep, yStep);
+            CGContextFillRect(ctx, selectionFrame);
+            // Draw background of selected row
+            selectionFrame = CGRectMake(self.frame.origin.x, y * yStep - 4, 2 * xStep, yStep);
+            CGContextFillRect(ctx, selectionFrame);
+        }
+    }
+    
+    // Draw first vertical line
+//    CGContextMoveToPoint(ctx, xFirstLine, bounds.origin.y);
+//    CGContextAddLineToPoint(ctx, xFirstLine, bounds.size.height + bounds.origin.y);
+//    CGContextStrokePath(ctx);
+    
+    CGContextRestoreGState(ctx);
+}
+
+- (void)selectAtPoint:(NSPoint)point {
+    selectionPoint = point;
+    selectionPoint.y += 3;
+    [self setNeedsDisplay];
+}
+
+@end
