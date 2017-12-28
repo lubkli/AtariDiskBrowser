@@ -12,6 +12,7 @@
 
 @synthesize isValid;
 @synthesize sectorsBoot;
+@synthesize sectorsSystem;
 @synthesize bootAddress;
 @synthesize initAddress;
 @synthesize contAddress;

@@ -35,6 +35,7 @@
     
     //Read this values from BOOT sector in Ctor
     self.sectorsBoot = 3;
+    self.sectorsSystem = 9;
     self.bootAddress = 0x700;
     
     int8_t dosSign = [reader readByte];

@@ -766,7 +766,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awg-vP-42R">
-                                            <rect key="frame" x="245" y="7" width="26" height="26"/>
+                                            <rect key="frame" x="470" y="7" width="26" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSGoBackTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="25K-Ac-7IA">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -776,17 +776,20 @@ DQ
                                                 <action selector="previousClicked:" target="X3Q-fm-zFj" id="tHg-pc-vvd"/>
                                             </connections>
                                         </button>
-                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ln-d9-5ic">
-                                            <rect key="frame" x="279" y="9" width="44" height="22"/>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ln-d9-5ic">
+                                            <rect key="frame" x="504" y="9" width="44" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ZBU-9e-1UE">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <action selector="textFieldChanged:" target="X3Q-fm-zFj" id="z99-NZ-BdL"/>
+                                            </connections>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VXn-3I-Uak">
-                                            <rect key="frame" x="331" y="7" width="26" height="26"/>
+                                            <rect key="frame" x="556" y="7" width="26" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSGoForwardTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="wMf-3H-e9f">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -797,7 +800,7 @@ DQ
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwE-zx-WJl">
-                                            <rect key="frame" x="18" y="9" width="221" height="24"/>
+                                            <rect key="frame" x="18" y="9" width="101" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Sector #" id="yfK-e4-8Yq">
                                                 <font key="font" metaFont="system" size="18"/>
@@ -805,6 +808,14 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sHF-fW-wIh">
+                                            <rect key="frame" x="123" y="11" width="341" height="19"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <sliderCell key="cell" state="on" alignment="left" maxValue="720" tickMarkPosition="above" sliderType="linear" id="b6G-Gl-d4N"/>
+                                            <connections>
+                                                <action selector="sliderMoved:" target="X3Q-fm-zFj" id="rUU-gY-6lE"/>
+                                            </connections>
+                                        </slider>
                                     </subviews>
                                 </view>
                             </box>
@@ -819,6 +830,7 @@ DQ
                         <outlet property="nextButton" destination="VXn-3I-Uak" id="0Uy-EC-IZm"/>
                         <outlet property="previousButton" destination="awg-vP-42R" id="Rwf-gn-kwo"/>
                         <outlet property="sectorTextField" destination="9Ln-d9-5ic" id="9TI-gx-Jbn"/>
+                        <outlet property="slider" destination="sHF-fW-wIh" id="mqA-qe-Fo5"/>
                     </connections>
                 </viewController>
                 <customObject id="Siv-gj-T2C" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

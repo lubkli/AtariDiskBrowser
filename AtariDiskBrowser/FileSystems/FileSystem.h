@@ -20,6 +20,7 @@
 
 @property (assign) BOOL isValid;
 @property (assign) NSUInteger sectorsBoot;
+@property (assign) NSUInteger sectorsSystem;
 @property (assign) NSUInteger bootAddress;
 @property (assign) NSUInteger initAddress;
 @property (assign) NSUInteger contAddress;

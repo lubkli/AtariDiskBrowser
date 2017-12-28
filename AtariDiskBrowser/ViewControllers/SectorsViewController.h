@@ -12,6 +12,7 @@
 
 @interface SectorsViewController : NSViewController {
     NSUInteger _currentSector;
+    NSUInteger _maxSector;
 }
 
 @property (nonatomic, strong) FileSystem *fileSystem;
@@ -21,5 +22,6 @@
 @property (weak) IBOutlet NSButton *previousButton;
 @property (weak) IBOutlet NSButton *nextButton;
 @property (weak) IBOutlet HexField *hexField;
+@property (weak) IBOutlet NSSlider *slider;
 
 @end
