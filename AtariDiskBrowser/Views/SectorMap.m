@@ -133,6 +133,8 @@
     for ( i = 0; i < count; i++) {
         NSFrameRectWithWidth ( rectArray[i], 1 );
     }
+    
+    [@"There is 707 sectors available - 101 used = 606 free." drawAtPoint:CGPointMake(newBounds.origin.x + 1, 16) withAttributes:nil];
 }
 
 -(void)fixUsage

@@ -32,6 +32,7 @@
 
 - (id)initWithBinaryReader:(BinaryReader*)binaryReaded headerSize:(NSUInteger)header diskSize:(NSUInteger)disk sectorSize:(NSUInteger)sector;
 
+- (NSData *)readSector:(NSUInteger)sector;
 - (BOOL)readVTOC;
 - (BOOL)readDirectories;
 - (NSData *)readBootRecord;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		57234B301FB1033400DFD5E9 /* BinaryReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 57234B2F1FB1033400DFD5E9 /* BinaryReader.m */; };
 		5729DBB01FB3BB500068ABCC /* ATRImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5729DBAF1FB3BB500068ABCC /* ATRImage.m */; };
+		574313181FEAE551000110F7 /* HexTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 574313171FEAE551000110F7 /* HexTextLayer.m */; };
 		5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */; };
 		5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BAC01FB4C85C00CEDB10 /* AtariFile.m */; };
 		5784BA281FC384E70040CCE0 /* SpartaDos.m in Sources */ = {isa = PBXBuildFile; fileRef = 5784BA271FC384E70040CCE0 /* SpartaDos.m */; };
@@ -21,6 +22,8 @@
 		57D5F8741FAFAEBF004D891B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D5F8731FAFAEBF004D891B /* main.m */; };
 		57DB73981FD3FB930051A9A1 /* SectorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB73971FD3FB930051A9A1 /* SectorsViewController.m */; };
 		57DB739B1FD3FC070051A9A1 /* BootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB739A1FD3FC070051A9A1 /* BootViewController.m */; };
+		57DB73A31FD4349E0051A9A1 /* HexField.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB73A21FD4349E0051A9A1 /* HexField.m */; };
+		57DB73A61FD43AAF0051A9A1 /* HexLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DB73A51FD43AAF0051A9A1 /* HexLayer.m */; };
 		57DDDCE71FBD8F5E000D6687 /* SectorMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DDDCE61FBD8F5E000D6687 /* SectorMap.m */; };
 		57DDDCEA1FBF362F000D6687 /* DiskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DDDCE91FBF362F000D6687 /* DiskImage.m */; };
 		57DDDCED1FBF38FA000D6687 /* XFDImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DDDCEC1FBF38FA000D6687 /* XFDImage.m */; };
@@ -31,6 +34,8 @@
 		57234B2F1FB1033400DFD5E9 /* BinaryReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BinaryReader.m; sourceTree = "<group>"; };
 		5729DBAE1FB3BB500068ABCC /* ATRImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRImage.h; sourceTree = "<group>"; };
 		5729DBAF1FB3BB500068ABCC /* ATRImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATRImage.m; sourceTree = "<group>"; };
+		574313161FEAE551000110F7 /* HexTextLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HexTextLayer.h; sourceTree = "<group>"; };
+		574313171FEAE551000110F7 /* HexTextLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HexTextLayer.m; sourceTree = "<group>"; };
 		5757BABC1FB4AE4B00CEDB10 /* NSStringExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSStringExtension.h; sourceTree = "<group>"; };
 		5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringExtension.m; sourceTree = "<group>"; };
 		5757BABF1FB4C85C00CEDB10 /* AtariFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtariFile.h; sourceTree = "<group>"; };
@@ -55,6 +60,10 @@
 		57DB73971FD3FB930051A9A1 /* SectorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectorsViewController.m; sourceTree = "<group>"; };
 		57DB73991FD3FC070051A9A1 /* BootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BootViewController.h; sourceTree = "<group>"; };
 		57DB739A1FD3FC070051A9A1 /* BootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BootViewController.m; sourceTree = "<group>"; };
+		57DB73A11FD4349E0051A9A1 /* HexField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HexField.h; sourceTree = "<group>"; };
+		57DB73A21FD4349E0051A9A1 /* HexField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HexField.m; sourceTree = "<group>"; };
+		57DB73A41FD43AAF0051A9A1 /* HexLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HexLayer.h; sourceTree = "<group>"; };
+		57DB73A51FD43AAF0051A9A1 /* HexLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HexLayer.m; sourceTree = "<group>"; };
 		57DDDCE51FBD8F5E000D6687 /* SectorMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SectorMap.h; sourceTree = "<group>"; };
 		57DDDCE61FBD8F5E000D6687 /* SectorMap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SectorMap.m; sourceTree = "<group>"; };
 		57DDDCE81FBF362F000D6687 /* DiskImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiskImage.h; sourceTree = "<group>"; };
@@ -119,6 +128,7 @@
 		57D5F8661FAFAEBF004D891B /* AtariDiskBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				57DB73A01FD4345E0051A9A1 /* Controls */,
 				57A0AB441FC08E71005B3C34 /* DiskImages */,
 				57A0AB451FC09041005B3C34 /* FileSystems */,
 				57DB739E1FD4158F0051A9A1 /* Views */,
@@ -160,6 +170,19 @@
 				57D5F86B1FAFAEBF004D891B /* ViewController.m */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		57DB73A01FD4345E0051A9A1 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				57DB73A11FD4349E0051A9A1 /* HexField.h */,
+				57DB73A21FD4349E0051A9A1 /* HexField.m */,
+				57DB73A41FD43AAF0051A9A1 /* HexLayer.h */,
+				57DB73A51FD43AAF0051A9A1 /* HexLayer.m */,
+				574313161FEAE551000110F7 /* HexTextLayer.h */,
+				574313171FEAE551000110F7 /* HexTextLayer.m */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,14 +261,17 @@
 				57D5F8741FAFAEBF004D891B /* main.m in Sources */,
 				57D5F8691FAFAEBF004D891B /* AppDelegate.m in Sources */,
 				5784BA281FC384E70040CCE0 /* SpartaDos.m in Sources */,
+				574313181FEAE551000110F7 /* HexTextLayer.m in Sources */,
 				57DDDCE71FBD8F5E000D6687 /* SectorMap.m in Sources */,
 				5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */,
 				57DDDCED1FBF38FA000D6687 /* XFDImage.m in Sources */,
 				57DDDCEA1FBF362F000D6687 /* DiskImage.m in Sources */,
+				57DB73A61FD43AAF0051A9A1 /* HexLayer.m in Sources */,
 				57A0AB3D1FC07B9A005B3C34 /* FileSystem.m in Sources */,
 				5729DBB01FB3BB500068ABCC /* ATRImage.m in Sources */,
 				57DB73981FD3FB930051A9A1 /* SectorsViewController.m in Sources */,
 				5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */,
+				57DB73A31FD4349E0051A9A1 /* HexField.m in Sources */,
 				57DB739B1FD3FC070051A9A1 /* BootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -38,6 +38,19 @@
     return self;
 }
 
+- (NSData *)readSector:(NSUInteger)sector
+{
+    [reader reset];
+    
+    // skip header
+    [reader moveBy:headerSize];
+    
+    // skip to VTOC ( begining of sector 360 = 0x168 )
+    [reader moveBy:sectorSize*(sector)];
+    
+    return [reader readData:sectorSize];
+}
+
 - (BOOL)readVTOC
 {
     return NO;

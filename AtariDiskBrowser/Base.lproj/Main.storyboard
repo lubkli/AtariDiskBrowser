@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -772,6 +772,9 @@ DQ
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="previousClicked:" target="X3Q-fm-zFj" id="tHg-pc-vvd"/>
+                                            </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ln-d9-5ic">
                                             <rect key="frame" x="279" y="9" width="44" height="22"/>
@@ -789,12 +792,34 @@ DQ
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="nextClicked:" target="X3Q-fm-zFj" id="c4w-WD-JKY"/>
+                                            </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qwE-zx-WJl">
+                                            <rect key="frame" x="18" y="9" width="221" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Sector #" id="yfK-e4-8Yq">
+                                                <font key="font" metaFont="system" size="18"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </box>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UuX-hN-QRh" customClass="HexField">
+                                <rect key="frame" x="20" y="61" width="600" height="307"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="hexField" destination="UuX-hN-QRh" id="CmL-jS-QyO"/>
+                        <outlet property="nextButton" destination="VXn-3I-Uak" id="0Uy-EC-IZm"/>
+                        <outlet property="previousButton" destination="awg-vP-42R" id="Rwf-gn-kwo"/>
+                        <outlet property="sectorTextField" destination="9Ln-d9-5ic" id="9TI-gx-Jbn"/>
+                    </connections>
                 </viewController>
                 <customObject id="Siv-gj-T2C" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
