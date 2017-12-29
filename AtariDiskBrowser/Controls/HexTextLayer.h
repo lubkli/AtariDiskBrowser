@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface HexTextLayer : CALayer {
+    double charSize;
     NSMutableArray<NSString *> *dataArray;
     NSData *charArray;
 }

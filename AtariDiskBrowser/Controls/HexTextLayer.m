@@ -11,6 +11,14 @@
 
 @implementation HexTextLayer
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        charSize = 14;
+    }
+    return self;
+}
+
 - (void)loadWithData:(NSData *)data atOffset:(NSUInteger)offset {
     charArray = [[NSData alloc] initWithData:data];
     [data enumerateByteRangesUsingBlock:^(const void *bytes,
@@ -25,26 +33,26 @@
     
         // Data
         NSMutableString *resultAsHexBytes = [NSMutableString string];
-        NSUInteger b = 0; // Count space between 8 byte fields and EOL
-        NSUInteger r = 0; // Count rows
+        NSUInteger chars = 0; // Count space between 8 byte fields and EOL
+        NSUInteger row = 0; // Count rows
         for (NSUInteger i = 0; i < byteRange.length; ++i) {
-                b++;
+                chars++;
                 // Append byte in hex
                 [resultAsHexBytes appendFormat:@"%02X ", ((uint8_t*)bytes)[i]];
 
                 //Add spaces after 8 byte field
-                if (b % 8 == 0) {
+                if (chars % 8 == 0) {
                     [resultAsHexBytes appendFormat:@"   "];
                 }
                 
-            if (b == 16)
+            if (chars == 16)
             {
                 //Format whole string and insert into array
-                NSString *lineString = [NSString stringWithFormat:@"%06X %@", (unsigned int)(16 * r + offset), resultAsHexBytes];
+                NSString *lineString = [NSString stringWithFormat:@"%06X %@", (unsigned int)(16 * row + offset), resultAsHexBytes];
                 [dataArray addObject:lineString];
                 resultAsHexBytes = [NSMutableString string];
-                b = 0;
-                r++;
+                chars = 0;
+                row++;
             }
         }
     }];
@@ -52,22 +60,27 @@
     [self setNeedsDisplay];
 }
 
-- (void) getImage:(CGImageRef *)image forChar:(unsigned char)character {
-    int myWidth = 8;
-    int myHeight = 8;
-    char* rgba = (char*)malloc(myWidth*myHeight*4);
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    
+- (void) getImage:(CGImageRef *)image forChar:(unsigned char)character inInverse:(bool)inverse {
+    // Character size is 8x8
+    int width = 8;
+    int height = 8;
+    // Allocate and fill bitmap array
+    unsigned char* rgba = (unsigned char*)malloc(width*height*4);
     int offset=0;
-    for(int i=0; i < myHeight; ++i)
+    for(int i=0; i < height; ++i)
     {
+        // Get character from font (each byte is binary encoded line)
         unsigned char ch = FONT[character*8 + i];
-        for (int j=myWidth-1; j >= 0; j--)
+        for (int j=width-1; j >= 0; j--)
         {
+            // Process pixel by pixel in line
             int s = 1 << j;
-            int b = s & ch;
-            char ch2 = b == 0 ? (char)255 : 0;
-            
+            bool b = (s & ch) == 0;
+            // Invert color when needed
+            if (inverse)
+                b = !b;
+            // Set color in the bitmap array
+            unsigned char ch2 = b ? 255 : 0;
             rgba[4*offset]   = ch2;
             rgba[4*offset+1] = ch2;
             rgba[4*offset+2] = ch2;
@@ -76,17 +89,17 @@
         }
     }
     
+    // Make image from bitmap array
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef bitmapContext = CGBitmapContextCreate(
                                                        rgba,
-                                                       myHeight,
-                                                       myWidth,
+                                                       height,
+                                                       width,
                                                        8, // bitsPerComponent
-                                                       4*myWidth, // bytesPerRow
+                                                       4*width, // bytesPerRow
                                                        colorSpace,
                                                        kCGImageAlphaNoneSkipLast);
-    
     *image = CGBitmapContextCreateImage(bitmapContext);
-    
     CFRelease(colorSpace);
     free(rgba);
     
@@ -96,37 +109,37 @@
 - (void)drawInContext:(CGContextRef)ctx {
     CGContextSaveGState(ctx);
     
+    // Prepare font and color
     NSFont *font = [[NSFontManager sharedFontManager]  fontWithFamily:@"Courier" traits:NSFontWeightRegular weight:NSFontWeightRegular size:13];
     CTFontRef sysUIFont = (__bridge CTFontRef)font;
-    
     CGColorRef color = [NSColor blackColor].CGColor;
     
-    // pack it into attributes dictionary
+    // Pack it into attributes dictionary
     NSDictionary *attributesDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                     (__bridge id)sysUIFont, (id)kCTFontAttributeName,
                                     color, (id)kCTForegroundColorAttributeName,
                                     nil];
-    int i = 1;
-    const char* chars = [charArray bytes];
+    int row = 1;
+    const unsigned char* chars = [charArray bytes];
     for (NSString *string in dataArray)
     {
-      
-        // make the attributed string
+        // Draw hex bytes
         NSAttributedString *stringToDraw = [[NSAttributedString alloc] initWithString:string attributes:attributesDict];
-    
-        // draw
         CTLineRef line = CTLineCreateWithAttributedString((CFAttributedStringRef)stringToDraw);
-        CGContextSetTextPosition(ctx, 0.0, self.frame.size.height - (i * (12.0 + 2)));
+        CGContextSetTextPosition(ctx, 0.0, self.frame.size.height - row * charSize);
         CTLineDraw(line, ctx);
+        CFRelease(line);
         
-        if (i>1) {
+        // Draw ATASCII
+        if (row>1) {
             for (int p=0; p<16; p++) {
-                int pos = (i-2)*16 + p;
+                int pos = (row-2)*16 + p;
                 
-                char ch = chars[pos];
+                unsigned char ch = chars[pos];
+                bool isInverse = ch > 127;
                 
-                //TODO: prepare chars > 127 at inverse
-                if (ch > 127)
+                // Upper 127 bytes are the same as lower 127 bytes but inverted colors
+                if (isInverse)
                     ch = ch - 127;
                 
                 // Convert from ATASCII to ASCII
@@ -136,14 +149,12 @@
                     ch -= 32;
                 
                 CGImageRef ir;
-                [self getImage:&ir forChar:ch];
-                CGContextDrawImage(ctx, CGRectMake(20 * 23.3 + (p*15), self.frame.size.height - (i * (12.0 + 2)) - 3, 14, 14), ir);
+                [self getImage:&ir forChar:ch inInverse:isInverse];
+                CGContextDrawImage(ctx, CGRectMake(20 * 23.3 + (p*15), self.frame.size.height - (row * charSize) - 3, charSize, charSize), ir);
             }
         }
         
-        i++;
-        
-        CFRelease(line);
+        row++;
     }
     
     CGContextRestoreGState(ctx);
