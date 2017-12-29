@@ -12,15 +12,15 @@
 #import "HexTextLayer.h"
 
 @implementation HexField {
-    HexColorLayer *_hexLayer;
+    HexColorLayer *_colorLayer;
     HexTextLayer* _textLayer;
 }
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
     if ((self = [super initWithFrame:frameRect])) {
         //Add background layer
-        _hexLayer = [HexColorLayer layer];
-        [self.layer addSublayer:_hexLayer];
+        _colorLayer = [HexColorLayer layer];
+        [self.layer addSublayer:_colorLayer];
         //Add foreground layer
         _textLayer = [HexTextLayer layer];
         [self.layer addSublayer:_textLayer];
@@ -35,8 +35,8 @@
     if (self) {
         self.wantsLayer = YES;
         //Add background layer
-        _hexLayer = [HexColorLayer layer];
-        [self.layer addSublayer:_hexLayer];
+        _colorLayer = [HexColorLayer layer];
+        [self.layer addSublayer:_colorLayer];
         //Add foreground layer
         _textLayer = [HexTextLayer layer];
         [self.layer addSublayer:_textLayer];
@@ -47,8 +47,8 @@
 }
 
 - (void) setLayerFrames {
-    _hexLayer.frame = CGRectInset(self.bounds, 0, 0);
-    [_hexLayer setNeedsDisplay];
+    _colorLayer.frame = CGRectInset(self.bounds, 0, 0);
+    [_colorLayer setNeedsDisplay];
     
     _textLayer.frame = CGRectInset(self.bounds, 0, 0);
     [_textLayer setNeedsDisplay];
@@ -62,19 +62,16 @@
 //        NSRectFill ( dirtyRect );
 }
 
-- (void)setData:(NSData*)data {
-    [_textLayer LoadWithData:data];
-}
-
-- (void)setSectorSize:(NSUInteger)sectorSize {
-    _hexLayer.sectorSize = sectorSize;
+- (void)loadWithData:(NSData *)data atSector:(NSUInteger)number withSectorSize:(NSUInteger)size {
+    _colorLayer.rowCount = size / 16;
+    [_textLayer loadWithData:data atOffset:number * size];
 }
 
 - (void)mouseDown:(NSEvent *)event {
     NSPoint mouseDownPos = [event locationInWindow];
     mouseDownPos.x -= self.frame.origin.x;
     mouseDownPos.y -= self.frame.origin.y;
-    [_hexLayer selectAtPoint:mouseDownPos];
+    [_colorLayer selectAtPoint:mouseDownPos];
 }
 
 @end

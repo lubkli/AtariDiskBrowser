@@ -15,7 +15,7 @@
     NSPoint selectionPoint;
 }
 
-@property (assign) NSUInteger sectorSize;
+@property (assign) NSUInteger rowCount;
 
 - (void)selectAtPoint:(NSPoint)point;
 

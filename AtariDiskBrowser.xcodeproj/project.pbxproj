@@ -70,6 +70,7 @@
 		57DDDCE91FBF362F000D6687 /* DiskImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiskImage.m; sourceTree = "<group>"; };
 		57DDDCEB1FBF38FA000D6687 /* XFDImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFDImage.h; sourceTree = "<group>"; };
 		57DDDCEC1FBF38FA000D6687 /* XFDImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFDImage.m; sourceTree = "<group>"; };
+		57F8AF0E1FF594C000E0CED8 /* Font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +176,7 @@
 		57DB73A01FD4345E0051A9A1 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				57F8AF0E1FF594C000E0CED8 /* Font.h */,
 				57DB73A11FD4349E0051A9A1 /* HexField.h */,
 				57DB73A21FD4349E0051A9A1 /* HexField.m */,
 				57DB73A41FD43AAF0051A9A1 /* HexColorLayer.h */,

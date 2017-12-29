@@ -21,6 +21,8 @@
     [super viewDidLoad];
     // Do view setup here.
     
+    self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
+    
     _currentSector = 0;
     _maxSector = fileSystem.sectorsCount + fileSystem.sectorsBoot + fileSystem.sectorsSystem;
     _slider.integerValue = 0;
@@ -33,9 +35,8 @@
 
 -(void)refreshView {
     NSData *fileData = [self.fileSystem readSector:_currentSector];
-    self.hexField.data = fileData;
-    self.hexField.sectorSize = self.fileSystem.sectorSize;
     
+    [self.hexField loadWithData:fileData atSector:_currentSector withSectorSize:self.fileSystem.sectorSize];
     
     if (_currentSector <= 0) {
         [self.previousButton setHidden:YES];
