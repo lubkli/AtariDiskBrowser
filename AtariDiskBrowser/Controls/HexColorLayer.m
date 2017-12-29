@@ -53,8 +53,8 @@
     // Selection
     int16_t xDiff = selectionPoint.x - bounds.origin.x;
     if (xDiff > 0 && selectionPoint.x < 19 * xStep
-        && selectionPoint.y < bounds.size.height
-        && selectionPoint.y > bounds.size.height - (self.rowCount * yStep)) {
+        && selectionPoint.y < bounds.size.height - 4
+        && selectionPoint.y > bounds.size.height - (self.rowCount * yStep) - 2) {
         NSUInteger x = xDiff / xStep;
         if (x != 8) {
             NSUInteger y = selectionPoint.y / yStep;
@@ -67,6 +67,12 @@
             CGContextFillRect(ctx, selectionFrame);
             // Draw background of selected row
             selectionFrame = CGRectMake(self.frame.origin.x, y * yStep - 1, 2 * xStep, yStep);
+            CGContextFillRect(ctx, selectionFrame);
+            // Draw background of selected char
+            CGContextSetFillColorWithColor(ctx, [[NSColor redColor] CGColor]);
+            if (x>8)
+                x--;
+            selectionFrame = CGRectMake(20 * xStep + x * 14 - 1, y * yStep - 1, yStep + 1, yStep + 1);
             CGContextFillRect(ctx, selectionFrame);
         }
     }
@@ -81,7 +87,6 @@
 
 - (void)selectAtPoint:(NSPoint)point {
     selectionPoint = point;
-    selectionPoint.y += 3;
     [self setNeedsDisplay];
 }
 

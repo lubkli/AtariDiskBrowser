@@ -751,7 +751,7 @@ DQ
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ln-d9-5ic">
-                                            <rect key="frame" x="563" y="9" width="44" height="22"/>
+                                            <rect key="frame" x="159" y="9" width="44" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ZBU-9e-1UE">
                                                 <font key="font" metaFont="system"/>
@@ -763,7 +763,7 @@ DQ
                                             </connections>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VXn-3I-Uak">
-                                            <rect key="frame" x="615" y="7" width="26" height="26"/>
+                                            <rect key="frame" x="211" y="7" width="26" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSGoForwardTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="wMf-3H-e9f">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -782,16 +782,8 @@ DQ
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sHF-fW-wIh">
-                                            <rect key="frame" x="123" y="11" width="319" height="19"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <sliderCell key="cell" state="on" alignment="left" maxValue="720" tickMarkPosition="above" sliderType="linear" id="b6G-Gl-d4N"/>
-                                            <connections>
-                                                <action selector="sliderMoved:" target="X3Q-fm-zFj" id="rUU-gY-6lE"/>
-                                            </connections>
-                                        </slider>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awg-vP-42R">
-                                            <rect key="frame" x="529" y="7" width="26" height="26"/>
+                                            <rect key="frame" x="125" y="7" width="26" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSGoBackTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="25K-Ac-7IA">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -801,6 +793,14 @@ DQ
                                                 <action selector="previousClicked:" target="X3Q-fm-zFj" id="tHg-pc-vvd"/>
                                             </connections>
                                         </button>
+                                        <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sHF-fW-wIh">
+                                            <rect key="frame" x="243" y="11" width="449" height="19"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <sliderCell key="cell" state="on" alignment="left" maxValue="720" tickMarkPosition="above" sliderType="linear" id="b6G-Gl-d4N"/>
+                                            <connections>
+                                                <action selector="sliderMoved:" target="X3Q-fm-zFj" id="rUU-gY-6lE"/>
+                                            </connections>
+                                        </slider>
                                     </subviews>
                                 </view>
                                 <constraints>

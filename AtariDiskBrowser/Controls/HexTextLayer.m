@@ -132,8 +132,8 @@
         
         // Draw ATASCII
         if (row>1) {
-            for (int p=0; p<16; p++) {
-                int pos = (row-2)*16 + p;
+            for (int col=0; col<16; col++) {
+                int pos = (row-2)*16 + col;
                 
                 unsigned char ch = chars[pos];
                 bool isInverse = ch > 127;
@@ -150,7 +150,7 @@
                 
                 CGImageRef ir;
                 [self getImage:&ir forChar:ch inInverse:isInverse];
-                CGContextDrawImage(ctx, CGRectMake(20 * 23.3 + (p*15), self.frame.size.height - (row * charSize) - 3, charSize, charSize), ir);
+                CGContextDrawImage(ctx, CGRectMake(20 * 23.3 + col * charSize, self.frame.size.height - row * charSize - 2, charSize - 1, charSize - 1), ir);
             }
         }
         
