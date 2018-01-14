@@ -12,6 +12,11 @@
 		574313181FEAE551000110F7 /* HexTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 574313171FEAE551000110F7 /* HexTextLayer.m */; };
 		5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */; };
 		5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BAC01FB4C85C00CEDB10 /* AtariFile.m */; };
+		5774411D1FFAFE59002C2CE7 /* Disassembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774411C1FFAFE59002C2CE7 /* Disassembler.m */; };
+		577441221FFBB86E002C2CE7 /* InstructionSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 577441211FFBB86E002C2CE7 /* InstructionSet.m */; };
+		577441251FFBB91E002C2CE7 /* Instruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 577441241FFBB91E002C2CE7 /* Instruction.m */; };
+		577441291FFC4885002C2CE7 /* Label.m in Sources */ = {isa = PBXBuildFile; fileRef = 577441281FFC4885002C2CE7 /* Label.m */; };
+		5774412C1FFC4A39002C2CE7 /* LabelArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774412B1FFC4A39002C2CE7 /* LabelArray.m */; };
 		5784BA281FC384E70040CCE0 /* SpartaDos.m in Sources */ = {isa = PBXBuildFile; fileRef = 5784BA271FC384E70040CCE0 /* SpartaDos.m */; };
 		57A0AB3D1FC07B9A005B3C34 /* FileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A0AB3C1FC07B9A005B3C34 /* FileSystem.m */; };
 		57A0AB401FC07CEF005B3C34 /* DosFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 57A0AB3F1FC07CEF005B3C34 /* DosFileSystem.m */; };
@@ -40,6 +45,17 @@
 		5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringExtension.m; sourceTree = "<group>"; };
 		5757BABF1FB4C85C00CEDB10 /* AtariFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtariFile.h; sourceTree = "<group>"; };
 		5757BAC01FB4C85C00CEDB10 /* AtariFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtariFile.m; sourceTree = "<group>"; };
+		5774411B1FFAFE59002C2CE7 /* Disassembler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Disassembler.h; sourceTree = "<group>"; };
+		5774411C1FFAFE59002C2CE7 /* Disassembler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Disassembler.m; sourceTree = "<group>"; };
+		577441201FFBB86E002C2CE7 /* InstructionSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstructionSet.h; sourceTree = "<group>"; };
+		577441211FFBB86E002C2CE7 /* InstructionSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstructionSet.m; sourceTree = "<group>"; };
+		577441231FFBB91E002C2CE7 /* Instruction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Instruction.h; sourceTree = "<group>"; };
+		577441241FFBB91E002C2CE7 /* Instruction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Instruction.m; sourceTree = "<group>"; };
+		577441261FFBBC5F002C2CE7 /* AddressingMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressingMode.h; sourceTree = "<group>"; };
+		577441271FFC4885002C2CE7 /* Label.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Label.h; sourceTree = "<group>"; };
+		577441281FFC4885002C2CE7 /* Label.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Label.m; sourceTree = "<group>"; };
+		5774412A1FFC4A39002C2CE7 /* LabelArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelArray.h; sourceTree = "<group>"; };
+		5774412B1FFC4A39002C2CE7 /* LabelArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelArray.m; sourceTree = "<group>"; };
 		5784BA261FC384E70040CCE0 /* SpartaDos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpartaDos.h; sourceTree = "<group>"; };
 		5784BA271FC384E70040CCE0 /* SpartaDos.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpartaDos.m; sourceTree = "<group>"; };
 		57A0AB3B1FC07B9A005B3C34 /* FileSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileSystem.h; sourceTree = "<group>"; };
@@ -84,6 +100,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5774411A1FFAFE0F002C2CE7 /* Disassembler */ = {
+			isa = PBXGroup;
+			children = (
+				577441261FFBBC5F002C2CE7 /* AddressingMode.h */,
+				5774411B1FFAFE59002C2CE7 /* Disassembler.h */,
+				5774411C1FFAFE59002C2CE7 /* Disassembler.m */,
+				577441231FFBB91E002C2CE7 /* Instruction.h */,
+				577441241FFBB91E002C2CE7 /* Instruction.m */,
+				577441201FFBB86E002C2CE7 /* InstructionSet.h */,
+				577441211FFBB86E002C2CE7 /* InstructionSet.m */,
+				577441271FFC4885002C2CE7 /* Label.h */,
+				577441281FFC4885002C2CE7 /* Label.m */,
+				5774412A1FFC4A39002C2CE7 /* LabelArray.h */,
+				5774412B1FFC4A39002C2CE7 /* LabelArray.m */,
+			);
+			path = Disassembler;
+			sourceTree = "<group>";
+		};
 		57A0AB441FC08E71005B3C34 /* DiskImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				57DB73A01FD4345E0051A9A1 /* Controls */,
+				5774411A1FFAFE0F002C2CE7 /* Disassembler */,
 				57A0AB441FC08E71005B3C34 /* DiskImages */,
 				57A0AB451FC09041005B3C34 /* FileSystems */,
 				57DB739E1FD4158F0051A9A1 /* Views */,
@@ -262,16 +297,21 @@
 				57234B301FB1033400DFD5E9 /* BinaryReader.m in Sources */,
 				57D5F8741FAFAEBF004D891B /* main.m in Sources */,
 				57D5F8691FAFAEBF004D891B /* AppDelegate.m in Sources */,
+				577441221FFBB86E002C2CE7 /* InstructionSet.m in Sources */,
+				577441291FFC4885002C2CE7 /* Label.m in Sources */,
 				5784BA281FC384E70040CCE0 /* SpartaDos.m in Sources */,
 				574313181FEAE551000110F7 /* HexTextLayer.m in Sources */,
 				57DDDCE71FBD8F5E000D6687 /* SectorMap.m in Sources */,
 				5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */,
+				5774412C1FFC4A39002C2CE7 /* LabelArray.m in Sources */,
 				57DDDCED1FBF38FA000D6687 /* XFDImage.m in Sources */,
 				57DDDCEA1FBF362F000D6687 /* DiskImage.m in Sources */,
 				57DB73A61FD43AAF0051A9A1 /* HexColorLayer.m in Sources */,
 				57A0AB3D1FC07B9A005B3C34 /* FileSystem.m in Sources */,
 				5729DBB01FB3BB500068ABCC /* ATRImage.m in Sources */,
+				577441251FFBB91E002C2CE7 /* Instruction.m in Sources */,
 				57DB73981FD3FB930051A9A1 /* SectorsViewController.m in Sources */,
+				5774411D1FFAFE59002C2CE7 /* Disassembler.m in Sources */,
 				5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */,
 				57DB73A31FD4349E0051A9A1 /* HexField.m in Sources */,
 				57DB739B1FD3FC070051A9A1 /* BootViewController.m in Sources */,

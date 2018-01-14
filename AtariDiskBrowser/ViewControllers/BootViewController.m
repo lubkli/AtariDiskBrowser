@@ -8,6 +8,7 @@
 
 #import "BootViewController.h"
 
+
 @interface BootViewController ()
 
 @end
@@ -18,7 +19,9 @@
     [super viewDidLoad];
     // Do view setup here.
     
-    [_fileSystem readBootRecord];
+    NSData *data = [_fileSystem readBootRecord];
+    dasm = [[Disassembler alloc] initWithData:data];
+    [dasm disassemble];
 }
 
 @end

@@ -7,9 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Disassembler.h"
 #import "FileSystem.h"
 
-@interface BootViewController : NSViewController
+@interface BootViewController : NSViewController {
+    @private
+    Disassembler *dasm;
+}
 
 @property (nonatomic, strong) FileSystem *fileSystem;
 
