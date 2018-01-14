@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -712,12 +713,11 @@
             <objects>
                 <viewController id="5g2-4E-IYz" customClass="BootViewController" sceneMemberID="viewController">
                     <view key="view" id="4qp-oC-Nr1">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="776" height="506"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s38-Rb-PTm">
-                                <rect key="frame" x="196" y="13" width="59" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s38-Rb-PTm">
+                                <rect key="frame" x="359" y="13" width="59" height="32"/>
                                 <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8cc-zW-ZgR">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -729,25 +729,86 @@ DQ
                                     <action selector="dismissController:" target="5g2-4E-IYz" id="1ht-cW-0bH"/>
                                 </connections>
                             </button>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-Pf-rlJ">
+                                <rect key="frame" x="20" y="61" width="736" height="425"/>
+                                <clipView key="contentView" id="gWe-9Z-mAt">
+                                    <rect key="frame" x="1" y="1" width="734" height="423"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="men-gm-4pp">
+                                            <rect key="frame" x="0.0" y="-1" width="734" height="423"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="734" height="423"/>
+                                            <size key="maxSize" width="734" height="10000000"/>
+                                            <attributedString key="textStorage">
+                                                <fragment content=".">
+                                                    <attributes>
+                                                        <font key="NSFont" size="13" name="Courier"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="V7b-UE-GMu">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="dde-jN-Gci">
+                                    <rect key="frame" x="719" y="1" width="16" height="423"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="hjC-Pf-rlJ" firstAttribute="top" secondItem="4qp-oC-Nr1" secondAttribute="top" constant="20" id="0wf-2O-VfO"/>
+                            <constraint firstItem="s38-Rb-PTm" firstAttribute="centerX" secondItem="4qp-oC-Nr1" secondAttribute="centerX" id="Xbe-Gk-Aes"/>
+                            <constraint firstItem="hjC-Pf-rlJ" firstAttribute="leading" secondItem="4qp-oC-Nr1" secondAttribute="leading" constant="20" id="gnl-2x-T0d"/>
+                            <constraint firstItem="s38-Rb-PTm" firstAttribute="firstBaseline" secondItem="hjC-Pf-rlJ" secondAttribute="baseline" constant="35" id="mjp-wS-s2o"/>
+                            <constraint firstAttribute="trailing" secondItem="hjC-Pf-rlJ" secondAttribute="trailing" constant="20" id="oqK-5X-tZJ"/>
+                            <constraint firstAttribute="bottom" secondItem="s38-Rb-PTm" secondAttribute="bottom" constant="20" id="xiJ-QW-JQ3"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="men-gm-4pp" id="r6J-45-eGN"/>
+                    </connections>
                 </viewController>
                 <customObject id="qhh-eb-fdX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="578" y="390"/>
+            <point key="canvasLocation" x="663" y="445"/>
         </scene>
         <!--Sectors View Controller-->
         <scene sceneID="Lhf-2E-18e">
             <objects>
                 <viewController id="X3Q-fm-zFj" customClass="SectorsViewController" sceneMemberID="viewController">
                     <view key="view" id="t86-Ln-eFq">
-                        <rect key="frame" x="0.0" y="0.0" width="748" height="390"/>
+                        <rect key="frame" x="0.0" y="0.0" width="776" height="476"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="43b-CC-Mc8">
+                                <rect key="frame" x="359" y="13" width="59" height="32"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sYN-zI-0t4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="X3Q-fm-zFj" id="B08-z8-yB3"/>
+                                </connections>
+                            </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="UuX-hN-QRh" customClass="HexField">
+                                <rect key="frame" x="20" y="62" width="736" height="354"/>
+                            </customView>
                             <box translatesAutoresizingMaskIntoConstraints="NO" id="mdf-U8-RlX">
-                                <rect key="frame" x="17" y="334" width="714" height="56"/>
+                                <rect key="frame" x="17" y="420" width="742" height="56"/>
                                 <view key="contentView" id="aDs-TC-eyj">
-                                    <rect key="frame" x="2" y="2" width="710" height="39"/>
+                                    <rect key="frame" x="2" y="2" width="738" height="39"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ln-d9-5ic">
@@ -807,22 +868,6 @@ DQ
                                     <constraint firstAttribute="height" constant="52" id="Ezp-pL-v3c"/>
                                 </constraints>
                             </box>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="UuX-hN-QRh" customClass="HexField">
-                                <rect key="frame" x="20" y="62" width="708" height="268"/>
-                            </customView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="43b-CC-Mc8">
-                                <rect key="frame" x="345" y="13" width="59" height="32"/>
-                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sYN-zI-0t4">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="dismissController:" target="X3Q-fm-zFj" id="B08-z8-yB3"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="43b-CC-Mc8" secondAttribute="bottom" constant="20" id="Box-uo-fy6"/>
@@ -846,7 +891,7 @@ DQ
                 </viewController>
                 <customObject id="Siv-gj-T2C" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="656" y="980"/>
+            <point key="canvasLocation" x="663" y="1023"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">

@@ -19,7 +19,7 @@
 
 - (id)initWithData:(NSData *)data;
 
-- (void)disassemble;
+- (NSString *)disassemble;
 - (void)dump;
 
 @end

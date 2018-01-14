@@ -15,6 +15,8 @@
     Disassembler *dasm;
 }
 
+@property (unsafe_unretained) IBOutlet NSTextView *textView;
+
 @property (nonatomic, strong) FileSystem *fileSystem;
 
 @end

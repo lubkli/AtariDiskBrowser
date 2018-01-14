@@ -19,9 +19,11 @@
     [super viewDidLoad];
     // Do view setup here.
     
+    self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
+    
     NSData *data = [_fileSystem readBootRecord];
     dasm = [[Disassembler alloc] initWithData:data];
-    [dasm disassemble];
+    [self.textView setString:[dasm disassemble]];
 }
 
 @end

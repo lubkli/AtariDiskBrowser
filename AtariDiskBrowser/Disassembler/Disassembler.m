@@ -23,28 +23,32 @@
     return self;
 }
 
-- (void)disassemble {
+- (NSString *)disassemble {
     const unsigned char* codebuffer = [program bytes];
-    //    const uint8_t *opcodes = &codebuffer[16];
+    NSMutableString *result = [[NSMutableString alloc] init];
+    
     int pc = 18;
     
     while (pc < program.length) {
         Instruction *instruction = [instructionSet getInstructionForOpcode:codebuffer[pc]];
         
-        NSMutableString *result = [[NSMutableString alloc] init];
+        NSMutableString *line = [[NSMutableString alloc] init];
         
         for (int op = 0; op < instruction.bytes; op++){
-            [result appendFormat:@"%02X ", codebuffer[pc + op]];
+            [line appendFormat:@"%02X ", codebuffer[pc + op]];
         }
         
-        NSString *code = [result stringByPaddingToLength:9 withString:@" " startingAtIndex:0];
+        NSString *code = [line stringByPaddingToLength:9 withString:@" " startingAtIndex:0];
         
         NSString *inst = [instruction descriptionWithOperands:&codebuffer[pc] andLabels:labelArray];
         
-        NSLog(@"$%04X %@; %@", 0x0700 + pc, code, inst);
+        
+        [result appendFormat:@"$%04X %@: %@ \n", 0x0700 + pc, code, inst];
         
         pc += instruction.bytes;
     }
+    
+    return [NSString stringWithString:result];
 }
 
 - (void)dump {
