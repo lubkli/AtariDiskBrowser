@@ -11,12 +11,17 @@
 @implementation FileSystem
 
 @synthesize isValid;
+@synthesize isBootable;
+@synthesize files;
+@synthesize drives;
 @synthesize sectorSize;
 @synthesize sectorsBoot;
 @synthesize sectorsSystem;
 @synthesize bootAddress;
+@synthesize bootEndAddress;
 @synthesize initAddress;
 @synthesize contAddress;
+@synthesize dosAddress;
 @synthesize sectorMap;
 @synthesize sectorsCount;
 @synthesize sectorsFree;
@@ -40,17 +45,9 @@
     return self;
 }
 
-- (NSData *)readSector:(NSUInteger)sector
+- (BOOL)readBOOT
 {
-    [reader reset];
-    
-    // skip header
-    [reader moveBy:headerSize];
-    
-    // skip to VTOC ( begining of sector 360 = 0x168 )
-    [reader moveBy:sectorSize*(sector)];
-    
-    return [reader readData:sectorSize];
+    return NO;
 }
 
 - (BOOL)readVTOC
@@ -66,6 +63,19 @@
 - (NSData *)readBootRecord
 {
     return nil;
+}
+
+- (NSData *)readSector:(NSUInteger)sector
+{
+    [reader reset];
+    
+    // skip header
+    [reader moveBy:headerSize];
+    
+    // skip to requested sector
+    [reader moveBy:sectorSize*(sector)];
+    
+    return [reader readData:sectorSize];
 }
 
 - (NSData *)readFile:(NSString *)fileName

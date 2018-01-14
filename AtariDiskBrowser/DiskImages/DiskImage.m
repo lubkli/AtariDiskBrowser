@@ -44,11 +44,17 @@
     if (!_system.isValid)
         _system = [[SpartaDos alloc] initWithBinaryReader:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
     
-    if (![_system readVTOC])
+    if (!_system.isValid)
         return 2;
+
+    if (![_system readBOOT])
+        return 3;
+    
+    if (![_system readVTOC])
+        return 4;
     
     if (![_system readDirectories])
-        return 3;
+        return 5;
     
     return 0;
 }

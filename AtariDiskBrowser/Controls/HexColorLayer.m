@@ -60,19 +60,19 @@
             NSUInteger y = selectionPoint.y / yStep;
             // Draw background of selected byte
             CGContextSetFillColorWithColor(ctx, [[NSColor colorWithRed:1.0 green:0.9 blue:0.0 alpha:1.0] CGColor]);
-            CGRect selectionFrame = CGRectMake(x * xStep + bounds.origin.x, y * yStep - 1, xStep, yStep);
+            CGRect selectionFrame = CGRectMake(x * xStep + bounds.origin.x, y * yStep + 1, xStep, yStep);
             CGContextFillRect(ctx, selectionFrame);
             // Draw background of selected column
             selectionFrame = CGRectMake(x * xStep + bounds.origin.x, bounds.size.height - 3, xStep, yStep);
             CGContextFillRect(ctx, selectionFrame);
             // Draw background of selected row
-            selectionFrame = CGRectMake(self.frame.origin.x, y * yStep - 1, 2 * xStep, yStep);
+            selectionFrame = CGRectMake(self.frame.origin.x, y * yStep + 1, 2 * xStep, yStep);
             CGContextFillRect(ctx, selectionFrame);
             // Draw background of selected char
             CGContextSetFillColorWithColor(ctx, [[NSColor redColor] CGColor]);
             if (x>8)
                 x--;
-            selectionFrame = CGRectMake(20 * xStep + x * 14 - 1, y * yStep - 1, yStep + 1, yStep + 1);
+            selectionFrame = CGRectMake(20 * xStep + x * 14 - 1, y * yStep +1, yStep + 1, yStep + 1);
             CGContextFillRect(ctx, selectionFrame);
         }
     }
