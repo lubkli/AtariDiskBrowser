@@ -121,11 +121,24 @@
     }
     else
     {
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Alert" defaultButton:@"Ok" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Alert pop up displayed"];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"Alert"];
+        [alert setInformativeText:@"Unknown disk image format."];
+        [alert setAlertStyle:NSAlertStyleWarning];
         [alert runModal];
+        return;
     }
-    
-    [image mount:self.imageFilename];
+
+    if ([image mount:self.imageFilename] != 0) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"Alert"];
+        [alert setInformativeText:@"Unknown disk format."];
+        [alert setAlertStyle:NSAlertStyleWarning];
+        [alert runModal];
+        return;
+    }
     
     // Prepare header info for bindings
     self.diskSize = image.diskSize;
