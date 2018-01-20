@@ -11,6 +11,6 @@
 
 @interface DiskImageFactory : NSObject
 
-+ (DiskImage*)create:(NSString*)type;
++ (DiskImage*)mount:(NSString*)filename;
 
 @end

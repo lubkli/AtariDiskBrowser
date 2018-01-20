@@ -10,8 +10,7 @@
 
 @implementation XFDImage
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self)
     {
@@ -20,8 +19,7 @@
     return self;
 }
 
-- (BOOL)readHeader
-{
+- (BOOL)readHeader {
     BOOL result;
     @try
     {

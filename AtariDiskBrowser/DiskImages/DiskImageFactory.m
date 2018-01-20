@@ -14,25 +14,33 @@
 
 @implementation DiskImageFactory
 
-+ (DiskImage*)create:(NSString*)type {
-    if ([type isEqualToString:@"ATR"])
++ (DiskImage*)mount:(NSString*)filename {
+    NSString *ext = [[filename pathExtension] uppercaseString];
+    DiskImage *image = nil;
+    if ([ext isEqualToString:@"ATR"])
     {
-        return [[ATRImage alloc] init];
+        image = [[ATRImage alloc] init];
     }
-    else if ([type isEqualToString:@"DCM"])
+    else if ([ext isEqualToString:@"DCM"])
     {
-        return [[DCMImage alloc] init];
+        image = [[DCMImage alloc] init];
     }
-    else if ([type isEqualToString:@"SCP"])
+    else if ([ext isEqualToString:@"SCP"])
     {
-        return [[SCPImage alloc] init];
+        image = [[SCPImage alloc] init];
     }
-    else if ([type isEqualToString:@"XFD"])
+    else if ([ext isEqualToString:@"XFD"])
     {
-        return [[XFDImage alloc] init];
+        image = [[XFDImage alloc] init];
     }
-    else
-        return nil;
+    
+    if (image != nil) {
+        if ([image loadFromFile:filename] != 0) {
+            image = nil;
+        }
+    }
+    
+    return image;
 }
 
 @end

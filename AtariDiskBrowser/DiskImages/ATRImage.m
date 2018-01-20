@@ -11,12 +11,11 @@
 
 @implementation ATRImage
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self)
     {
-        _headerSize = 16;
+        _headerSize = sizeof(header);
     }
     return self;
 }
@@ -46,38 +45,25 @@
 //WORD, you get a "THIS FILE IS NOT AN ATARI DISK FILE" error
 //message. Try it.
 
-- (BOOL)readHeader
-{
-    BOOL result;
-    @try
-    {
-        [reader reset];
-        
-        uint16_t sign = [reader readWord];
-        NSLog(@"NICKATARI 0x%04x", sign);
-        
-        _diskSize = 0x10 * [reader readWord];
-        _sectorSize = [reader readWord];
-        
-        highSize = [reader readWord];
-        NSLog(@"highSize 0x%04x", highSize);
-        
-        diskFlags = [reader readByte];
-        NSLog(@"diskFlags 0x%04x", diskFlags);
-        
-        badSect = [reader readWord];
-        NSLog(@"badSect 0x%04x", badSect);
-        
-        for (int i=0; i<5; i++)
-            [reader readByte];
-        
-        result = YES;
-    }
-    @catch(NSException *exc)
-    {
-        NSLog(@"Exception: %@", exc);
-    }
-    return result;
+- (BOOL)readHeader {
+    [reader reset];
+    
+    if ([reader getLength] <= _headerSize)
+        return NO;
+
+    NSData *headerData = [reader readData:_headerSize];
+    [headerData getBytes:&header length:sizeof(header)];
+    
+    if (header.magic1 != AFILE_ATR_MAGIC1 || header.magic2 != AFILE_ATR_MAGIC2)
+        return NO;
+
+    _diskSize = 0x10 * ((header.seccounthi << 8) + header.seccountlo);
+    _sectorSize = (header.secsizehi << 8) + header.secsizelo;
+    highSize =  (header.hiseccounthi << 8) + header.hiseccountlo;
+    diskFlags = header.gash[0];
+    badSect = header.gash[2];
+    
+    return YES;
 }
 
 @end

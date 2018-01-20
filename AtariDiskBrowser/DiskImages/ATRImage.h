@@ -10,7 +10,25 @@
 #import <Foundation/Foundation.h>
 #import "DiskImage.h"
 
+#define    AFILE_ATR_MAGIC1    0x96
+#define    AFILE_ATR_MAGIC2    0x02
+
+/* ATR format header */
+struct ATR_header {
+    unsigned char magic1;
+    unsigned char magic2;
+    unsigned char seccountlo;
+    unsigned char seccounthi;
+    unsigned char secsizelo;
+    unsigned char secsizehi;
+    unsigned char hiseccountlo;
+    unsigned char hiseccounthi;
+    unsigned char gash[7];
+    unsigned char writeprotect;
+};
+
 @interface ATRImage : DiskImage {
+    struct ATR_header header;
     uint16_t highSize;
     uint8_t diskFlags;
     uint16_t badSect;

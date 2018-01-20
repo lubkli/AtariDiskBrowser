@@ -39,6 +39,10 @@
     return [[BinaryReader alloc] initWithData:data littleEndian:littleEndian];
 }
 
+- (BOOL)isEOF {
+    return length >= offset;
+}
+
 - (void)reset
 {
     current -= offset;

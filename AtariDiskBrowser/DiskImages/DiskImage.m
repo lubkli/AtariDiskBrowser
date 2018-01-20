@@ -17,8 +17,7 @@
 @synthesize sectorSize = _sectorSize;
 @synthesize system = _system;
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         
@@ -26,19 +25,26 @@
     return self;
 }
 
-- (BOOL)readHeader
-{
+- (NSData *)decode:(NSData *)data {
+    return data;
+}
+
+- (BOOL)readHeader {
     return NO;
 }
 
-- (NSInteger)mount:(NSString *)fileName
-{
-    NSData *fileData = [NSData dataWithContentsOfFile:fileName];
-    reader = [BinaryReader binaryReaderWithData:fileData littleEndian:TRUE];
+- (NSInteger)loadFromFile:(NSString *)fileName {
+    // Load data from file and decode it
+    NSData *fileData = [self decode:[NSData dataWithContentsOfFile:fileName]];
+    if (fileData == nil)
+        return 1;
     
+    // Create reader and read header
+    reader = [BinaryReader binaryReaderWithData:fileData littleEndian:TRUE];
     if (![self readHeader])
         return 1;
 
+    // Find file system
     _system = [[DosFileSystem alloc] initWithBinaryReader:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
     
     if (!_system.isValid)
@@ -47,21 +53,19 @@
     if (!_system.isValid)
         return 2;
 
+    // read BOOT sectors
     if (![_system readBOOT])
         return 3;
     
+    // read Volume Table Of Content
     if (![_system readVTOC])
         return 4;
     
+    // read Main Directory
     if (![_system readDirectories])
         return 5;
     
     return 0;
-}
-
-- (NSData *)readFile:(NSString *)fileName
-{
-    return [_system readFile:fileName];
 }
 
 @end

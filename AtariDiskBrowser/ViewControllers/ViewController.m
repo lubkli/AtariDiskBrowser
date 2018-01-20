@@ -95,7 +95,7 @@
     if ( [panel runModal] == NSModalResponseOK )
     {
         NSURL *url = [panel URL];
-        NSData *fileContent = [image readFile:[NSString stringWithFormat:@"%@", atariFile.name]];
+        NSData *fileContent = [image.system readFile:[NSString stringWithFormat:@"%@", atariFile.name]];
         NSError *error = nil;
         [fileContent writeToFile:[url path] options:NSDataWritingAtomic error:&error];
         NSLog(@"Write returned error: %@", [error localizedDescription]);
@@ -105,26 +105,13 @@
 - (void)openFileName:(NSString*)fileName {
     
     self.imageFilename = fileName;
-    
-    NSString *ext = [[self.imageFilename pathExtension] uppercaseString];
-    
-    image = [DiskImageFactory create:ext];
+    image = [DiskImageFactory mount:self.imageFilename];
     if (image == nil)
     {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
         [alert setMessageText:@"Alert"];
         [alert setInformativeText:@"Unknown disk image format."];
-        [alert setAlertStyle:NSAlertStyleWarning];
-        [alert runModal];
-        return;
-    }
-
-    if ([image mount:self.imageFilename] != 0) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"OK"];
-        [alert setMessageText:@"Alert"];
-        [alert setInformativeText:@"Unknown disk format."];
         [alert setAlertStyle:NSAlertStyleWarning];
         [alert runModal];
         return;
