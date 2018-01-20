@@ -7,10 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ATRImage.h"
-#import "XFDImage.h"
-//#import "BootViewController.h"
-//#import "SectorsViewController.h"
+#import "DiskImageFactory.h"
 
 @interface ViewController (Private)
 
@@ -111,15 +108,8 @@
     
     NSString *ext = [[self.imageFilename pathExtension] uppercaseString];
     
-    if ([ext isEqualToString:@"ATR"])
-    {
-        image = [[ATRImage alloc] init];
-    }
-    else if ([ext isEqualToString:@"XFD"])
-    {
-        image = [[XFDImage alloc] init];
-    }
-    else
+    image = [DiskImageFactory create:ext];
+    if (image == nil)
     {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];

@@ -61,7 +61,6 @@
     @catch(NSException *exc)
     {
         NSLog(@"Exception: %@", exc);
-//        result = [reader getOffset];
     }
     return result;
 }

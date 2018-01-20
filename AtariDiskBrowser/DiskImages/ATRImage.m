@@ -46,16 +46,6 @@
 //WORD, you get a "THIS FILE IS NOT AN ATARI DISK FILE" error
 //message. Try it.
 
-//Density  sides TPS SPT BPS enc total bytes
-//SD         1   40  18  128 FM  92160 (90K)
-//ED         1   40  26  128 MFM 133120 (130K)
-//SS/DD      1   40  18  256 MFM 184320 (180K)
-//SS/DD      2   40  18  256 MFM 368640 (360K)
-
-//Single-Sided, Single-Density: 40 tracks with 18 sectors per track, 128 bytes per sector. 90 KB capacity.
-//Single-Sided, Double-Density: 40 tracks with 18 sectors per track, 256 bytes per sector. 180 KB capacity. Readable by the XF551, the 815, or modified/upgraded 1050.
-//Single-Sided, Enhanced-Density: 40 tracks with 26 sectors per track, 128 bytes per sector. 130 KB capacity. Readable by the 1050 and the XF551.
-//Double-Sided, Double-Density: 80 tracks (40 tracks per side) with 18 sectors per track, 256 bytes per sector. 360 KB capacity. Readable by the XF551 only.
 - (BOOL)readHeader
 {
     BOOL result;
@@ -69,24 +59,23 @@
         _diskSize = 0x10 * [reader readWord];
         _sectorSize = [reader readWord];
         
-        uint16_t highSize = [reader readWord];
+        highSize = [reader readWord];
         NSLog(@"highSize 0x%04x", highSize);
         
-        uint8_t diskFlags = [reader readByte];
+        diskFlags = [reader readByte];
         NSLog(@"diskFlags 0x%04x", diskFlags);
         
-        uint16_t badSect = [reader readWord];
+        badSect = [reader readWord];
         NSLog(@"badSect 0x%04x", badSect);
         
         for (int i=0; i<5; i++)
-            NSLog(@"Z %d", [reader readByte]);
+            [reader readByte];
         
         result = YES;
     }
     @catch(NSException *exc)
     {
         NSLog(@"Exception: %@", exc);
-//        result = [reader getOffset];
     }
     return result;
 }
