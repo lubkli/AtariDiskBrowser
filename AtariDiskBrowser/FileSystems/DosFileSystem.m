@@ -26,6 +26,7 @@
 //    Byte 14: Boot flag (must be nonzero if DOS.SYS is on disk)
 //    Byte 15: Sector count (not used)
 //    Byte 16-17: DOS.SYS starting sector number
+//    Byte 18-127: Code for second phase of boot
 - (BOOL)readBOOT
 {
     [reader reset];
@@ -145,23 +146,6 @@
     }
 
     return YES;
-}
-
-// Boot record
-//
-//    Byte 18-127: Code for second phase of boot
-- (NSData *)readBootRecord
-{
-    [reader reset];
-    [reader moveBy:headerSize];
-    NSData *data = [reader readData:self.sectorSize];
-    const char *bytes = [data bytes];
-    for (int p=0; p<data.length; p++)
-    {
-        Byte b = bytes[p];
-        NSLog(@"%d - %d %c 0x%02x", p, b, b, b);
-    }
-    return data;
 }
 
 // Data sector

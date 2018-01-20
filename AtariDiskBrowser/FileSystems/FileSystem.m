@@ -62,7 +62,16 @@
 
 - (NSData *)readBootRecord
 {
-    return nil;
+    [reader reset];
+    [reader moveBy:headerSize];
+    NSData *data = [reader readData:self.sectorSize * self.sectorsBoot];
+    const char *bytes = [data bytes];
+    for (int p=0; p<data.length; p++)
+    {
+        Byte b = bytes[p];
+        NSLog(@"%d - %d %c 0x%02x", p, b, b, b);
+    }
+    return data;
 }
 
 - (NSData *)readSector:(NSUInteger)sector

@@ -10,6 +10,10 @@
 
 @implementation SpartaDos
 
+- (BOOL)readBOOT
+{
+    return YES;
+}
 
 //Byte Offset    Function
 //0    Unused. Usually 0.
@@ -136,11 +140,6 @@
     }
 
     return YES;
-}
-
-- (NSData *)readBootRecord
-{
-    return nil;
 }
 
 - (NSData *)readFile:(NSString *)fileName

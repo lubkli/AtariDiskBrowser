@@ -22,7 +22,7 @@
     self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
     
     NSData *data = [_fileSystem readBootRecord];
-    dasm = [[Disassembler alloc] initWithData:data];
+    dasm = [[Disassembler alloc] initWithData:data atAddress:_fileSystem.bootAddress];
     [self.textView setString:[dasm disassemble]];
 }
 

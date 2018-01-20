@@ -13,12 +13,13 @@
 
 @synthesize program;
 
-- (id)initWithData:(NSData *)data {
+- (id)initWithData:(NSData *)data atAddress:(NSUInteger)address {
     self = [super init];
     if (self) {
         program = data;
         instructionSet = [[InstructionSet alloc] init];
         labelArray = [[LabelArray alloc] init];
+        offset = address;
     }
     return self;
 }
@@ -27,7 +28,7 @@
     const unsigned char* codebuffer = [program bytes];
     NSMutableString *result = [[NSMutableString alloc] init];
     
-    int pc = 18;
+    int pc = 48;
     
     while (pc < program.length) {
         Instruction *instruction = [instructionSet getInstructionForOpcode:codebuffer[pc]];
@@ -42,10 +43,13 @@
         
         NSString *inst = [instruction descriptionWithOperands:&codebuffer[pc] andLabels:labelArray];
         
-        
-        [result appendFormat:@"$%04X %@: %@ \n", 0x0700 + pc, code, inst];
-        
-        pc += instruction.bytes;
+        if (instruction.bytes == 0) {
+            [result appendFormat:@"$%04X %02X       : .db %02X \n", 0x0700 + pc, codebuffer[pc], codebuffer[pc]];
+            pc += 1;
+        } else {
+            [result appendFormat:@"$%04X %@: %@ \n", 0x0700 + pc, code, inst];
+            pc += instruction.bytes;
+        }
     }
     
     return [NSString stringWithString:result];

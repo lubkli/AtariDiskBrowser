@@ -13,11 +13,12 @@
 @interface Disassembler : NSObject {
     InstructionSet *instructionSet;
     LabelArray *labelArray;
+    NSUInteger offset;
 }
 
 @property (nonatomic) NSData *program;
 
-- (id)initWithData:(NSData *)data;
+- (id)initWithData:(NSData *)data atAddress:(NSUInteger)address;
 
 - (NSString *)disassemble;
 - (void)dump;
