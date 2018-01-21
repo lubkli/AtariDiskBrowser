@@ -10,8 +10,8 @@
 #import <Foundation/Foundation.h>
 #import "DiskImage.h"
 
-#define    AFILE_ATR_MAGIC1    0x96
-#define    AFILE_ATR_MAGIC2    0x02
+#define     ATR_MAGIC1  0x96
+#define     ATR_MAGIC2  0x02
 
 /* ATR format header */
 struct ATR_header {
@@ -33,5 +33,7 @@ struct ATR_header {
     uint8_t diskFlags;
     uint16_t badSect;
 }
+
+- (void)makeHeaderWithSectorSize:(NSUInteger)sectorsize andSectorCount:(int)sectorcount;
 
 @end

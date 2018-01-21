@@ -40,7 +40,7 @@
 }
 
 - (BOOL)isEOF {
-    return length >= offset;
+    return offset >= length;
 }
 
 - (void)reset

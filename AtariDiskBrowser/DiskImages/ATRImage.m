@@ -45,6 +45,14 @@
 //WORD, you get a "THIS FILE IS NOT AN ATARI DISK FILE" error
 //message. Try it.
 
+- (void)update {
+    _diskSize = 0x10 * ((header.seccounthi << 8) + header.seccountlo);
+    _sectorSize = (header.secsizehi << 8) + header.secsizelo;
+    highSize =  (header.hiseccounthi << 8) + header.hiseccountlo;
+    diskFlags = header.gash[0];
+    badSect = header.gash[2];
+}
+
 - (BOOL)readHeader {
     [reader reset];
     
@@ -54,16 +62,29 @@
     NSData *headerData = [reader readData:_headerSize];
     [headerData getBytes:&header length:sizeof(header)];
     
-    if (header.magic1 != AFILE_ATR_MAGIC1 || header.magic2 != AFILE_ATR_MAGIC2)
+    if (header.magic1 != ATR_MAGIC1 || header.magic2 != ATR_MAGIC2)
         return NO;
 
-    _diskSize = 0x10 * ((header.seccounthi << 8) + header.seccountlo);
-    _sectorSize = (header.secsizehi << 8) + header.secsizelo;
-    highSize =  (header.hiseccounthi << 8) + header.hiseccountlo;
-    diskFlags = header.gash[0];
-    badSect = header.gash[2];
+    [self update];
     
     return YES;
+}
+
+- (void)makeHeaderWithSectorSize:(NSUInteger)sectorsize andSectorCount:(int)sectorcount {
+    uint32_t paras = (sectorsize != 256 || sectorcount <= 3)
+    ? (sectorcount << 3) /* single density or only boot sectors: sectorcount * 128 / 16 */
+    : (sectorcount << 4) - 0x18; /* double density with 128-byte boot sectors: (sectorcount * 256 - 3 * 128) / 16 */
+    
+    header.magic1 = ATR_MAGIC1;
+    header.magic2 = ATR_MAGIC2;
+    header.secsizelo = (uint8_t) sectorsize;
+    header.secsizehi = (uint8_t) (sectorsize >> 8);
+    header.seccountlo = (uint8_t) paras;
+    header.seccounthi = (uint8_t) (paras >> 8);
+    header.hiseccountlo = (uint8_t) (paras >> 16);
+    header.hiseccounthi = (uint8_t) (paras >> 24);
+    
+    [self update];
 }
 
 @end

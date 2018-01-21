@@ -19,7 +19,7 @@
 
 - (void)openFile {
     // Allowed file types
-    NSArray* fileTypes = [NSArray arrayWithObjects:@"ATR", @"XFD", nil];
+    NSArray* fileTypes = [NSArray arrayWithObjects:@"ATR", @"DCM", @"XFD", nil];
     
     // Create the File Open Dialog class.
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
