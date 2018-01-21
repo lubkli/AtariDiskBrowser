@@ -19,8 +19,11 @@
 + (id)binaryReaderWithData:(NSData *)data littleEndian:(BOOL)littleEndian;
 
 - (BOOL)isEOF;
+- (BOOL)canRead:(NSUInteger)count;
+
 - (void)reset;
 - (void)moveBy:(NSUInteger)count;
+
 - (NSUInteger)getOffset;
 - (NSUInteger)getLength;
 

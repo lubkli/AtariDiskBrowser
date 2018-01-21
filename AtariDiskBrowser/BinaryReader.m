@@ -43,6 +43,10 @@
     return offset >= length;
 }
 
+- (BOOL)canRead:(NSUInteger)count {
+    return offset + count <= length;
+}
+
 - (void)reset
 {
     current -= offset;

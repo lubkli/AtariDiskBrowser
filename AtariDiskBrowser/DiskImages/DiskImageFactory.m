@@ -9,6 +9,7 @@
 #import "DiskImageFactory.h"
 #import "ATRImage.h"
 #import "DCMImage.h"
+#import "DIImage.h"
 #import "SCPImage.h"
 #import "XFDImage.h"
 
@@ -24,6 +25,10 @@
     else if ([ext isEqualToString:@"DCM"])
     {
         image = [[DCMImage alloc] init];
+    }
+    else if ([ext isEqualToString:@"DI"])
+    {
+        image = [[DIImage alloc] init];
     }
     else if ([ext isEqualToString:@"SCP"])
     {
