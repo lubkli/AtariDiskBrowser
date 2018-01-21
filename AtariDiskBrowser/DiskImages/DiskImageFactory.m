@@ -10,39 +10,37 @@
 #import "ATRImage.h"
 #import "DCMImage.h"
 #import "DIImage.h"
+#import "PROImage.h"
 #import "SCPImage.h"
 #import "XFDImage.h"
 
 @implementation DiskImageFactory
 
-+ (DiskImage*)mount:(NSString*)filename {
-    NSString *ext = [[filename pathExtension] uppercaseString];
-    DiskImage *image = nil;
-    if ([ext isEqualToString:@"ATR"])
-    {
-        image = [[ATRImage alloc] init];
-    }
-    else if ([ext isEqualToString:@"DCM"])
-    {
-        image = [[DCMImage alloc] init];
-    }
-    else if ([ext isEqualToString:@"DI"])
-    {
-        image = [[DIImage alloc] init];
-    }
-    else if ([ext isEqualToString:@"SCP"])
-    {
-        image = [[SCPImage alloc] init];
-    }
-    else if ([ext isEqualToString:@"XFD"])
-    {
-        image = [[XFDImage alloc] init];
-    }
++ (DiskImage*)mount:(NSURL *)url {
+//    NSError *err = nil;
+//    NSFileHandle *handle = [NSFileHandle fileHandleForReadingFromURL:url error:&err];
+//    NSData *fileData = [handle readDataOfLength:4];
+//    [handle closeFile];
+//    unsigned char bytes[4];
+//    [fileData getBytes:bytes length:4];
+
+    unsigned char bytes[4];
+    DiskImage *image;
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    [data getBytes:bytes length:4];
     
-    if (image != nil) {
-        if ([image loadFromFile:filename] != 0) {
-            image = nil;
-        }
+    if (bytes[0] == 0x96 && bytes[1] == 0x02) {
+        image = [[ATRImage alloc] initWithData:data];
+    } else if (bytes[0] == 0xF9 || bytes[0] == 0xFA) {
+        image = [[DCMImage alloc] initWithData:data];
+    } else if (bytes[0] == 'D' && bytes[1] == 'I') {
+        image = [[DIImage alloc] initWithData:data];
+    } else if (bytes[2] == 'P' && bytes[3] == '2') {
+        image = [[PROImage alloc] initWithData:data];
+    } else if (bytes[2] == 'P' && bytes[3] == '3') {
+        image = [[PROImage alloc] initWithData:data];
+    } else {
+        image = [[XFDImage alloc] initWithData:data];
     }
     
     return image;

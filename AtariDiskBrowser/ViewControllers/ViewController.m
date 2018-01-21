@@ -102,9 +102,9 @@
     }
 }
 
-- (void)openFileName:(NSString*)fileName {
+- (void)openURL:(NSURL *)url {
     
-    self.imageFilename = fileName;
+    self.imageFilename = url;
     image = [DiskImageFactory mount:self.imageFilename];
     if (image == nil)
     {

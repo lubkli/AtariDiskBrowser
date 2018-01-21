@@ -10,15 +10,6 @@
 
 @implementation XFDImage
 
-- (id)init {
-    self = [super init];
-    if (self)
-    {
-        _headerSize = 0;
-    }
-    return self;
-}
-
 - (BOOL)readHeader {
     BOOL result;
     @try

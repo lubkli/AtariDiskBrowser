@@ -35,10 +35,10 @@
 @property (readonly) NSUInteger sectorSize;
 @property (readonly) FileSystem *system;
 
+- (id)initWithData:(NSData *)imageData;
+    
 - (NSData *)decode:(NSData *)data;
 
 - (BOOL)readHeader;
-
-- (NSInteger)loadFromFile:(NSString *)fileName;
 
 @end

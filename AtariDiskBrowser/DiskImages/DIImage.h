@@ -5,6 +5,10 @@
 //  Created by Lubomír Klimeš on 21/01/2018.
 //  Copyright © 2018 Lubomír Klimeš. All rights reserved.
 //
+//  Disk Image is a native Atari file format which contains an entire Atari
+//  disk without empty sectors. If sector is used or not is stored in sector map
+//  where each sector has one byte with CRC and zero means don't read.
+//  XL/ST-link / XLDJ disk image used by disk drive emulators on STs.
 
 #import "DiskImage.h"
 

@@ -19,7 +19,7 @@
     IBOutlet NSButton *viewButton;
 }
 
-@property (copy) NSString *imageFilename;
+@property (copy) NSURL *imageFilename;
 @property (retain) NSMutableArray *imageContent;
 
 @property (assign) NSUInteger diskSize;
@@ -32,7 +32,7 @@
 @property (copy) NSString *dosCounted;
 @property (assign) NSUInteger percentFree;
 
-- (void)openFileName:(NSString*)fileName;
+- (void)openURL:(NSURL *)url;
 
 @end
 

@@ -11,6 +11,6 @@
 
 @interface DiskImageFactory : NSObject
 
-+ (DiskImage*)mount:(NSString*)filename;
++ (DiskImage*)mount:(NSURL *)url;
 
 @end

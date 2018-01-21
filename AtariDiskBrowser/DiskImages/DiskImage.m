@@ -17,10 +17,37 @@
 @synthesize sectorSize = _sectorSize;
 @synthesize system = _system;
 
-- (id)init {
+- (id)initWithData:(NSData *)imageData {
     self = [super init];
     if (self) {
+        // Decode if needed
+        NSData *contentData = [self decode:imageData];
         
+        // Create reader and read header
+        reader = [BinaryReader binaryReaderWithData:contentData littleEndian:TRUE];
+        if (![self readHeader])
+            return nil;
+        
+        // Find file system
+        _system = [[DosFileSystem alloc] initWithBinaryReader:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
+        
+        if (!_system.isValid)
+            _system = [[SpartaDos alloc] initWithBinaryReader:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
+        
+        if (!_system.isValid)
+            return nil;
+        
+        // read BOOT sectors
+        if (![_system readBOOT])
+            return nil;
+        
+        // read Volume Table Of Content
+        if (![_system readVTOC])
+            return nil;
+        
+        // read Main Directory
+        if (![_system readDirectories])
+            return nil;
     }
     return self;
 }
@@ -31,41 +58,6 @@
 
 - (BOOL)readHeader {
     return NO;
-}
-
-- (NSInteger)loadFromFile:(NSString *)fileName {
-    // Load data from file and decode it
-    NSData *fileData = [self decode:[NSData dataWithContentsOfFile:fileName]];
-    if (fileData == nil)
-        return 1;
-    
-    // Create reader and read header
-    reader = [BinaryReader binaryReaderWithData:fileData littleEndian:TRUE];
-    if (![self readHeader])
-        return 1;
-
-    // Find file system
-    _system = [[DosFileSystem alloc] initWithBinaryReader:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
-    
-    if (!_system.isValid)
-        _system = [[SpartaDos alloc] initWithBinaryReader:reader headerSize:_headerSize diskSize:_diskSize sectorSize:_sectorSize];
-    
-    if (!_system.isValid)
-        return 2;
-
-    // read BOOT sectors
-    if (![_system readBOOT])
-        return 3;
-    
-    // read Volume Table Of Content
-    if (![_system readVTOC])
-        return 4;
-    
-    // read Main Directory
-    if (![_system readDirectories])
-        return 5;
-    
-    return 0;
 }
 
 @end

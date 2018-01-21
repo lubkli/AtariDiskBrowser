@@ -19,7 +19,7 @@
 
 - (void)openFile {
     // Allowed file types
-    NSArray* fileTypes = [NSArray arrayWithObjects:@"ATR", @"DCM", @"DI", @"XFD", nil];
+    NSArray* fileTypes = [NSArray arrayWithObjects:@"ATR", @"DCM", @"DI", @"PRO", @"XFD", nil];
     
     // Create the File Open Dialog class.
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
@@ -41,15 +41,14 @@
     {
         // Get an array containing the full filenames of all
         // files and directories selected.
-        NSArray *urls = [openDlg URLs];
-        NSString *fileName = [urls objectAtIndex:0];
+        NSURL *url = [[openDlg URLs] objectAtIndex:0];
         // instantiate your window controller
         NSWindowController *myController = [_storyBoard instantiateControllerWithIdentifier:@"WindowController"];
         // get a view controller and open disk image
         ViewController *viewController = (ViewController*)[myController contentViewController];
-        [viewController openFileName:fileName];
+        [viewController openURL:url];
         // set window title
-        NSString *theFileName = [[fileName lastPathComponent] stringByDeletingPathExtension];
+        NSString *theFileName = [url lastPathComponent];
         [[[viewController view] window] setTitle:theFileName];
         // show the window
         [myController showWindow:self];

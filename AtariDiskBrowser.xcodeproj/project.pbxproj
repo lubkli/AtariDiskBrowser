@@ -14,6 +14,7 @@
 		57515CAA20136122007F3B1B /* SCPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57515CA920136122007F3B1B /* SCPImage.m */; };
 		57515CAD20136290007F3B1B /* DiskImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 57515CAC20136290007F3B1B /* DiskImageFactory.m */; };
 		57515CB0201419EA007F3B1B /* DIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57515CAF201419EA007F3B1B /* DIImage.m */; };
+		57515CB32014BD69007F3B1B /* PROImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57515CB22014BD69007F3B1B /* PROImage.m */; };
 		5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */; };
 		5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BAC01FB4C85C00CEDB10 /* AtariFile.m */; };
 		5774411D1FFAFE59002C2CE7 /* Disassembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774411C1FFAFE59002C2CE7 /* Disassembler.m */; };
@@ -53,6 +54,8 @@
 		57515CAC20136290007F3B1B /* DiskImageFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiskImageFactory.m; sourceTree = "<group>"; };
 		57515CAE201419EA007F3B1B /* DIImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DIImage.h; sourceTree = "<group>"; };
 		57515CAF201419EA007F3B1B /* DIImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DIImage.m; sourceTree = "<group>"; };
+		57515CB12014BD69007F3B1B /* PROImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PROImage.h; sourceTree = "<group>"; };
+		57515CB22014BD69007F3B1B /* PROImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PROImage.m; sourceTree = "<group>"; };
 		5757BABC1FB4AE4B00CEDB10 /* NSStringExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSStringExtension.h; sourceTree = "<group>"; };
 		5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringExtension.m; sourceTree = "<group>"; };
 		5757BABF1FB4C85C00CEDB10 /* AtariFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtariFile.h; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				57515CA6201360FA007F3B1B /* DCMImage.m */,
 				57515CAE201419EA007F3B1B /* DIImage.h */,
 				57515CAF201419EA007F3B1B /* DIImage.m */,
+				57515CB12014BD69007F3B1B /* PROImage.h */,
+				57515CB22014BD69007F3B1B /* PROImage.m */,
 				57515CA820136122007F3B1B /* SCPImage.h */,
 				57515CA920136122007F3B1B /* SCPImage.m */,
 				57DDDCEB1FBF38FA000D6687 /* XFDImage.h */,
@@ -325,6 +330,7 @@
 				57DDDCE71FBD8F5E000D6687 /* SectorMap.m in Sources */,
 				5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */,
 				5774412C1FFC4A39002C2CE7 /* LabelArray.m in Sources */,
+				57515CB32014BD69007F3B1B /* PROImage.m in Sources */,
 				57DDDCED1FBF38FA000D6687 /* XFDImage.m in Sources */,
 				57DDDCEA1FBF362F000D6687 /* DiskImage.m in Sources */,
 				57DB73A61FD43AAF0051A9A1 /* HexColorLayer.m in Sources */,

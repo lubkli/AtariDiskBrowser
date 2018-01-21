@@ -11,12 +11,9 @@
 
 @implementation ATRImage
 
-- (id)init {
-    self = [super init];
-    if (self)
-    {
-        _headerSize = sizeof(header);
-    }
+- (id)initWithData:(NSData *)imageData {
+    _headerSize = sizeof(header);
+    self = [super initWithData:imageData];
     return self;
 }
 
