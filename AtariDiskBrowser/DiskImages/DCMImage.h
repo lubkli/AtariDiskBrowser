@@ -60,9 +60,20 @@
 //character to be used in the filename, depending on the restrictions
 //imposed by the DOS used.
 
+typedef struct {
+    int sectorcount;
+    int current_sector;
+} SECTOR_Info;
+
 @interface DCMImage : ATRImage {
     uint8_t archive_type;
     uint8_t archive_flags;
 }
+
+- (NSData *)decode:(NSData *)data;
+
+- (BOOL)padTillSector:(int)sectorNumber withInfo:(SECTOR_Info *)sectorInfo to:(NSMutableData *)target;
+- (BOOL)decodeSectors:(BinaryReader *)source withInfo:(SECTOR_Info *)sectorInfo to:(NSMutableData *)target;
+- (BOOL)decodePass:(BinaryReader *)source withInfo:(SECTOR_Info *)sectorInfo to:(NSMutableData *)target;
 
 @end

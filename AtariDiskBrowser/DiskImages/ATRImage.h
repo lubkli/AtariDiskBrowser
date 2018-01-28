@@ -34,6 +34,8 @@ struct ATR_header {
     uint16_t badSect;
 }
 
+- (BOOL)readHeader;
+- (void)update;
 - (void)makeHeaderWithSectorSize:(NSUInteger)sectorsize andSectorCount:(int)sectorcount;
 
 @end

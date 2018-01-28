@@ -41,4 +41,7 @@ struct DI_header2 {
     NSData *sectorTable;
 }
 
+- (NSData *)decode:(NSData *)data;
+- (BOOL)readHeader;
+
 @end

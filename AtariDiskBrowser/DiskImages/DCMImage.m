@@ -11,10 +11,61 @@
 
 @implementation DCMImage
 
-typedef struct {
-    int sectorcount;
-    int current_sector;
-} SECTOR_Info;
+//Diskcomm archive: A Diskcomm archive consists of one or more passes.
+//When an archive is split into multiple files, each pass is stored in a
+//separate file.
+//Pass: A pass consists of an archive type code, followed by pass
+//information, followed by the starting sector number, followed by one
+//or more sector data packets, followed by the end of pass code.
+//Archive type: The archive type indicates whether this is a multi file
+//archive (F9) or not (FA).
+- (NSData *)decode:(NSData *)data {
+    uint8_t lastSector;
+    SECTOR_Info sectorInfo;
+    
+    BinaryReader *source = [BinaryReader binaryReaderWithData:data littleEndian:YES];
+    NSMutableData *output = [[NSMutableData alloc] init];
+    
+    archive_type = [source readByte];
+    if (archive_type != 0xf9 && archive_type != 0xfa)
+        return nil;
+    
+    archive_flags = [source readByte];
+    if ((archive_flags & 0x1f) != 1)
+        return nil;
+    
+    sectorInfo.current_sector = 1;
+    
+    switch ((archive_flags >> 5) & 3) {
+        case 0:
+            sectorInfo.sectorcount = 720;
+            _sectorSize = 128;
+            break;
+        case 1:
+            sectorInfo.sectorcount = 720;
+            _sectorSize = 256;
+            break;
+        case 2:
+            sectorInfo.sectorcount = 1040;
+            _sectorSize = 128;
+            break;
+        default: // Unrecognized density
+            return nil;
+    }
+    
+    [self makeHeaderWithSectorSize:_sectorSize andSectorCount:sectorInfo.sectorcount];
+    [output appendBytes:&header length:sizeof(header)];
+    
+    if (![self decodePass:source withInfo:&sectorInfo to:output])
+        return nil;
+    
+    lastSector = sectorInfo.current_sector - 1;
+    if (lastSector <= sectorInfo.sectorcount)
+        if (![self padTillSector:sectorInfo.sectorcount + 1 withInfo:&sectorInfo to:output])
+            return nil;
+    
+    return [NSData dataWithData:output];
+}
 
 - (BOOL)padTillSector:(int)sectorNumber withInfo:(SECTOR_Info *)sectorInfo to:(NSMutableData *)target {
     uint8_t zero_buf[256];
@@ -252,62 +303,6 @@ typedef struct {
             return NO;
     }
     return YES;
-}
-
-//Diskcomm archive: A Diskcomm archive consists of one or more passes.
-//When an archive is split into multiple files, each pass is stored in a
-//separate file.
-//Pass: A pass consists of an archive type code, followed by pass
-//information, followed by the starting sector number, followed by one
-//or more sector data packets, followed by the end of pass code.
-//Archive type: The archive type indicates whether this is a multi file
-//archive (F9) or not (FA).
-- (NSData *)decode:(NSData *)data {
-    uint8_t lastSector;
-    SECTOR_Info sectorInfo;
-    
-    BinaryReader *source = [BinaryReader binaryReaderWithData:data littleEndian:YES];
-    NSMutableData *output = [[NSMutableData alloc] init];
-    
-    archive_type = [source readByte];
-    if (archive_type != 0xf9 && archive_type != 0xfa)
-        return nil;
-    
-    archive_flags = [source readByte];
-    if ((archive_flags & 0x1f) != 1)
-        return nil;
-
-    sectorInfo.current_sector = 1;
-    
-    switch ((archive_flags >> 5) & 3) {
-        case 0:
-            sectorInfo.sectorcount = 720;
-            _sectorSize = 128;
-            break;
-        case 1:
-            sectorInfo.sectorcount = 720;
-            _sectorSize = 256;
-            break;
-        case 2:
-            sectorInfo.sectorcount = 1040;
-            _sectorSize = 128;
-            break;
-        default: // Unrecognized density
-            return nil;
-    }
-    
-    [self makeHeaderWithSectorSize:_sectorSize andSectorCount:sectorInfo.sectorcount];
-    [output appendBytes:&header length:sizeof(header)];
-    
-    if (![self decodePass:source withInfo:&sectorInfo to:output])
-        return nil;
-   
-    lastSector = sectorInfo.current_sector - 1;
-    if (lastSector <= sectorInfo.sectorcount)
-        if (![self padTillSector:sectorInfo.sectorcount + 1 withInfo:&sectorInfo to:output])
-            return nil;
-    
-    return [NSData dataWithData:output];
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ATRImage.h"
-#import "NSStringExtension.h"
+#import "NSString+Binary.h"
 
 @implementation ATRImage
 
@@ -16,7 +16,6 @@
     self = [super initWithData:imageData];
     return self;
 }
-
 
 // FROM http://pages.suddenlink.net/wa5bdu/readme.txt
 //STRUCTURE OF AN SIO2PC ATARI DISK IMAGE:
@@ -41,15 +40,6 @@
 //string of bytes: "NICKATARI". If you try to load a file without this first
 //WORD, you get a "THIS FILE IS NOT AN ATARI DISK FILE" error
 //message. Try it.
-
-- (void)update {
-    _diskSize = 0x10 * ((header.seccounthi << 8) + header.seccountlo);
-    _sectorSize = (header.secsizehi << 8) + header.secsizelo;
-    highSize =  (header.hiseccounthi << 8) + header.hiseccountlo;
-    diskFlags = header.gash[0];
-    badSect = header.gash[2];
-}
-
 - (BOOL)readHeader {
     [reader reset];
     
@@ -65,6 +55,14 @@
     [self update];
     
     return YES;
+}
+
+- (void)update {
+    _diskSize = 0x10 * ((header.seccounthi << 8) + header.seccountlo);
+    _sectorSize = (header.secsizehi << 8) + header.secsizelo;
+    highSize =  (header.hiseccounthi << 8) + header.hiseccountlo;
+    diskFlags = header.gash[0];
+    badSect = header.gash[2];
 }
 
 - (void)makeHeaderWithSectorSize:(NSUInteger)sectorsize andSectorCount:(int)sectorcount {

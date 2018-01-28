@@ -12,4 +12,6 @@
 
 @interface XFDImage : DiskImage
 
+- (BOOL)readHeader;
+
 @end

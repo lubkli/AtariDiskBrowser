@@ -15,7 +15,7 @@
 		57515CAD20136290007F3B1B /* DiskImageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 57515CAC20136290007F3B1B /* DiskImageFactory.m */; };
 		57515CB0201419EA007F3B1B /* DIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57515CAF201419EA007F3B1B /* DIImage.m */; };
 		57515CB32014BD69007F3B1B /* PROImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57515CB22014BD69007F3B1B /* PROImage.m */; };
-		5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */; };
+		5757BABE1FB4AE4B00CEDB10 /* NSString+Binary.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BABD1FB4AE4B00CEDB10 /* NSString+Binary.m */; };
 		5757BAC11FB4C85C00CEDB10 /* AtariFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5757BAC01FB4C85C00CEDB10 /* AtariFile.m */; };
 		5774411D1FFAFE59002C2CE7 /* Disassembler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5774411C1FFAFE59002C2CE7 /* Disassembler.m */; };
 		577441221FFBB86E002C2CE7 /* InstructionSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 577441211FFBB86E002C2CE7 /* InstructionSet.m */; };
@@ -37,6 +37,7 @@
 		57DDDCE71FBD8F5E000D6687 /* SectorMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DDDCE61FBD8F5E000D6687 /* SectorMap.m */; };
 		57DDDCEA1FBF362F000D6687 /* DiskImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DDDCE91FBF362F000D6687 /* DiskImage.m */; };
 		57DDDCED1FBF38FA000D6687 /* XFDImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57DDDCEC1FBF38FA000D6687 /* XFDImage.m */; };
+		57E0A008201BDE6000273793 /* ATXImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 57E0A007201BDE6000273793 /* ATXImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,8 +57,8 @@
 		57515CAF201419EA007F3B1B /* DIImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DIImage.m; sourceTree = "<group>"; };
 		57515CB12014BD69007F3B1B /* PROImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PROImage.h; sourceTree = "<group>"; };
 		57515CB22014BD69007F3B1B /* PROImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PROImage.m; sourceTree = "<group>"; };
-		5757BABC1FB4AE4B00CEDB10 /* NSStringExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSStringExtension.h; sourceTree = "<group>"; };
-		5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringExtension.m; sourceTree = "<group>"; };
+		5757BABC1FB4AE4B00CEDB10 /* NSString+Binary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Binary.h"; sourceTree = "<group>"; };
+		5757BABD1FB4AE4B00CEDB10 /* NSString+Binary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Binary.m"; sourceTree = "<group>"; };
 		5757BABF1FB4C85C00CEDB10 /* AtariFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtariFile.h; sourceTree = "<group>"; };
 		5757BAC01FB4C85C00CEDB10 /* AtariFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AtariFile.m; sourceTree = "<group>"; };
 		5774411B1FFAFE59002C2CE7 /* Disassembler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Disassembler.h; sourceTree = "<group>"; };
@@ -101,6 +102,8 @@
 		57DDDCE91FBF362F000D6687 /* DiskImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiskImage.m; sourceTree = "<group>"; };
 		57DDDCEB1FBF38FA000D6687 /* XFDImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFDImage.h; sourceTree = "<group>"; };
 		57DDDCEC1FBF38FA000D6687 /* XFDImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFDImage.m; sourceTree = "<group>"; };
+		57E0A006201BDE6000273793 /* ATXImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATXImage.h; sourceTree = "<group>"; };
+		57E0A007201BDE6000273793 /* ATXImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATXImage.m; sourceTree = "<group>"; };
 		57F8AF0E1FF594C000E0CED8 /* Font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +118,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57515CB42017D25B007F3B1B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5757BABC1FB4AE4B00CEDB10 /* NSString+Binary.h */,
+				5757BABD1FB4AE4B00CEDB10 /* NSString+Binary.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		5774411A1FFAFE0F002C2CE7 /* Disassembler */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +154,8 @@
 				57515CAC20136290007F3B1B /* DiskImageFactory.m */,
 				5729DBAE1FB3BB500068ABCC /* ATRImage.h */,
 				5729DBAF1FB3BB500068ABCC /* ATRImage.m */,
+				57E0A006201BDE6000273793 /* ATXImage.h */,
+				57E0A007201BDE6000273793 /* ATXImage.m */,
 				57515CA5201360FA007F3B1B /* DCMImage.h */,
 				57515CA6201360FA007F3B1B /* DCMImage.m */,
 				57515CAE201419EA007F3B1B /* DIImage.h */,
@@ -188,6 +202,7 @@
 		57D5F8661FAFAEBF004D891B /* AtariDiskBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				57515CB42017D25B007F3B1B /* Categories */,
 				57DB73A01FD4345E0051A9A1 /* Controls */,
 				5774411A1FFAFE0F002C2CE7 /* Disassembler */,
 				57A0AB441FC08E71005B3C34 /* DiskImages */,
@@ -205,8 +220,6 @@
 				57D5F8721FAFAEBF004D891B /* Info.plist */,
 				57D5F8731FAFAEBF004D891B /* main.m */,
 				57D5F86F1FAFAEBF004D891B /* Main.storyboard */,
-				5757BABC1FB4AE4B00CEDB10 /* NSStringExtension.h */,
-				5757BABD1FB4AE4B00CEDB10 /* NSStringExtension.m */,
 			);
 			path = AtariDiskBrowser;
 			sourceTree = "<group>";
@@ -337,12 +350,13 @@
 				57A0AB3D1FC07B9A005B3C34 /* FileSystem.m in Sources */,
 				5729DBB01FB3BB500068ABCC /* ATRImage.m in Sources */,
 				577441251FFBB91E002C2CE7 /* Instruction.m in Sources */,
+				57E0A008201BDE6000273793 /* ATXImage.m in Sources */,
 				57DB73981FD3FB930051A9A1 /* SectorsViewController.m in Sources */,
 				57515CAD20136290007F3B1B /* DiskImageFactory.m in Sources */,
 				5774411D1FFAFE59002C2CE7 /* Disassembler.m in Sources */,
 				57515CA7201360FA007F3B1B /* DCMImage.m in Sources */,
 				57515CAA20136122007F3B1B /* SCPImage.m in Sources */,
-				5757BABE1FB4AE4B00CEDB10 /* NSStringExtension.m in Sources */,
+				5757BABE1FB4AE4B00CEDB10 /* NSString+Binary.m in Sources */,
 				57DB73A31FD4349E0051A9A1 /* HexField.m in Sources */,
 				57DB739B1FD3FC070051A9A1 /* BootViewController.m in Sources */,
 			);

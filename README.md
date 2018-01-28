@@ -6,4 +6,19 @@ from the Internet.
 
 ![Screen](/DOC/screen.png)
 
-Application is created in Objective C for Apple Mac computers.
+## Supported Features
+
+  * Boot Record View - You can inspect boot record using build-In Disassembler.
+  * Sector View - You can browse sector by sector.
+  * Supported Disk Image Formats
+    * ATR
+    * DCM
+    * DI
+    * XFD
+
+* Supported File Systems
+    * ATARI DOS 1, 2.0
+
+## Requirements
+
+  * Application is created in Objective C for Apple Mac computers (x64 platform).

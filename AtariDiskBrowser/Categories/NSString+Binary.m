@@ -6,7 +6,7 @@
 //  Copyright © 2017 Lubomír Klimeš. All rights reserved.
 //
 
-#import "NSStringExtension.h"
+#import "NSString+Binary.h"
 
 @implementation NSString (BinaryStringRepresentation)
 

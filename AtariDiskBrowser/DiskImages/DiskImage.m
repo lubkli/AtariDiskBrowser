@@ -22,6 +22,8 @@
     if (self) {
         // Decode if needed
         NSData *contentData = [self decode:imageData];
+        if (contentData == nil)
+            return nil;
         
         // Create reader and read header
         reader = [BinaryReader binaryReaderWithData:contentData littleEndian:TRUE];

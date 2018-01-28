@@ -32,7 +32,7 @@
 @property (copy) NSString *dosCounted;
 @property (assign) NSUInteger percentFree;
 
-- (void)openURL:(NSURL *)url;
+- (BOOL)openURL:(NSURL *)url;
 
 @end
 

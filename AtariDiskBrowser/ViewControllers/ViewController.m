@@ -102,7 +102,7 @@
     }
 }
 
-- (void)openURL:(NSURL *)url {
+- (BOOL)openURL:(NSURL *)url {
     
     self.imageFilename = url;
     image = [DiskImageFactory mount:self.imageFilename];
@@ -114,7 +114,7 @@
         [alert setInformativeText:@"Unknown disk image format."];
         [alert setAlertStyle:NSAlertStyleWarning];
         [alert runModal];
-        return;
+        return NO;
     }
     
     // Prepare header info for bindings
@@ -133,5 +133,6 @@
     const char *bytes = [image.system.usage bytes];
     map.sectorsCount = image.diskSize / image.sectorSize; //image.sectorsCount;
     [map applyUsage:bytes size:[image.system.usage length]];
+    return YES;
 }
 @end
